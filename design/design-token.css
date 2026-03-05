@@ -1,0 +1,28 @@
+:root {
+  /* ===== Base Palette ===== */
+  --shioridana-base-neutral: oklch(0.147 0 0);
+  --shioridana-base-warm-tint: oklch(0.96 0.007 130);
+  --shioridana-base-primary: oklch(0.745 0.183 62);
+  --shioridana-base-destructive: oklch(0.638 0.209 30);
+  --shioridana-base-success: oklch(0.931 0.107 155);
+
+  /* ===== Colors ===== */
+  --shioridana-background: var(--shioridana-base-neutral);
+  --shioridana-foreground: oklch(1 0 0);
+  --shioridana-card: oklch(from var(--shioridana-base-neutral) calc(l + 0.038) c h);
+  --shioridana-card-foreground: oklch(1 0 0);
+  --shioridana-muted-foreground: oklch(from var(--shioridana-base-warm-tint) calc(l - 0.175) calc(c * 0.7) h);
+  --shioridana-border: oklch(from var(--shioridana-base-neutral) calc(l + 0.122) c h);
+  --shioridana-input: oklch(from var(--shioridana-base-neutral) calc(l + 0.122) c h);
+  --shioridana-secondary: oklch(from var(--shioridana-base-neutral) calc(l + 0.122) c h);
+  --shioridana-secondary-foreground: oklch(1 0 0);
+  --shioridana-primary: var(--shioridana-base-primary);
+  --shioridana-primary-foreground: var(--shioridana-base-neutral);
+  --shioridana-destructive: var(--shioridana-base-destructive);
+  --shioridana-tag-success: var(--shioridana-base-success);
+  --shioridana-tag-success-foreground: oklch(from var(--shioridana-base-success) calc(l * 0.22) calc(c * 0.12) h);
+
+  /* ===== Border Radius ===== */
+  --shioridana-radius-m: 16px;
+  --shioridana-radius-pill: calc(infinity * 1px);
+}
