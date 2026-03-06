@@ -29,47 +29,47 @@
 - 言語: TypeScript
 - ビルドツール: Vite
 - アーキテクチャ: SPA
-- データフロー: Notion DB → JSON → Pagefindインデックス
+- データフロー: Notion DB → JSON → MiniSearchインデックス
 
 ## 利用したいサービス
 - DB: Notion
-- リアルタイム検索: [pagefind](https://pagefind.app/)
+- リアルタイム検索: [MiniSearch](https://lucaong.github.io/minisearch/)
 - ホスティング: Vercel
-- 再ビルド: VercelのDeploy Hookを利用
-- 再ビルド通知: Vercel Serverless Functionsでステータスをポーリングし、Popoverでトースト表示
+- ブックマーク更新: Vercel Serverless Functions（API Routes）
+- 更新通知: トースト表示（async/await）
 
-### 再ビルドの流れ
+### ブックマーク更新の流れ
 
-Vercel APIのトークンをクライアントに露出させないため、Vercel Serverless Functions（API Routes）を中間に挟みます。
+Notion APIのトークンをクライアントに露出させないため、Vercel Serverless Functions（API Routes）を中間に挟みます。
 
 ```
 UIの更新ボタン
   ↓ POST
-Serverless Function → Deploy Hook → ビルド開始
-  ↓ deployment ID を返す
-クライアントがポーリング
-  ↓ GET
-Serverless Function → Vercel API でステータス確認
-  ↓ "READY" になったら
-Popoverでトースト通知
+/api/v1/bookmarks/update/
+  ↓ Serverless Function内で Notion DB → JSON 変換
+  ↓ レスポンスとしてJSONを返却
+クライアント
+  ↓ async/awaitで受け取り
+  ↓ stateを差し替え + MiniSearchインデックス再構築
+トースト通知（成功 or 失敗）
 ```
 
 ## 状態遷移
 
 ### メインフロー
-初期読み込み（Notion → JSON → Index） → 一覧表示
+初期読み込み（Notion → JSON） → 一覧表示
 
 ### 一覧表示からの操作
-- **検索中**: Pagefindで絞り込み → 一覧表示
+- **検索中**: MiniSearchで絞り込み → 一覧表示
 - **タグ編集**: Notion API更新 → 一覧表示
-- **削除確認**: ダイアログ表示 → 削除実行 → 一覧表示
-- **更新リクエスト**: Deploy Hook POST → ビルド中
+- **削除確認**: モーダルダイアログ表示 → 削除実行 → 一覧表示
+- **更新リクエスト**: API POST → 更新中
 
-### 更新フロー（Deploy Hook）
-ビルド中（ポーリング監視） → 更新完了（トースト通知） → 一覧表示
+### 更新フロー（Serverless Function）
+更新中（async/awaitで待機） → 更新完了（トースト通知） → state差し替え + インデックス再構築
 
 ### エラー時
-ビルド中 → エラー（トーストでエラー表示） → 一覧表示
+更新中 → エラー（トーストでエラー表示） → 一覧表示
 
 ## 開発に必要なもの
 NotionのAPIキーについては、`.env`ファイルに記載があります。
