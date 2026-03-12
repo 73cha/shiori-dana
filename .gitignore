@@ -1,3 +1,5 @@
 design/images/
 node_modules/
+.svelte-kit/
+.vercel/
 .env

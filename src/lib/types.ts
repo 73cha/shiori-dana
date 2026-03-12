@@ -4,13 +4,17 @@ export interface Bookmark {
   url: string
   description: string
   img: string
-  tags: string[]
+  tags: { id: string; tag: string }[]
 }
 
-export interface UpdateResponse {
+export type BookmarksResponse = {
   bookmarks: Bookmark[][]
 }
 
-export interface ErrorResponse {
+export type DeleteResponse = {
+  success: true
+}
+
+export type ErrorResponse = {
   error: string
 }

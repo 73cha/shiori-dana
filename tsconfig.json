@@ -1,26 +1,6 @@
 {
+  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    // コンパイル後のJSバージョン（top-level await, at()等が使える）
-    "target": "ES2022",
-    // 出力のモジュール形式（ESM: import/export）
-    "module": "ES2022",
-    // Vite等バンドラー環境向けのモジュール解決（pathsエイリアスや拡張子省略に対応）
-    "moduleResolution": "bundler",
-    // strictNullChecks, noImplicitAny等の厳格な型チェックを一括有効化
-    "strict": true,
-    // CommonJSモジュールをimport x from 'x'でインポート可能にする
-    "esModuleInterop": true,
-    // node_modules内の.d.tsの型チェックをスキップ（ビルド速度向上）
-    "skipLibCheck": true,
-    // ファイル名の大文字小文字の不一致をエラーにする
-    "forceConsistentCasingInFileNames": true,
-    // pathsの起点（プロジェクトルート）
-    "baseUrl": ".",
-    // パスエイリアス: @api/xxx → api/xxx
-    "paths": {
-      "@api/*": ["api/*"]
-    }
-  },
-  // 型チェック対象のディレクトリ
-  "include": ["api"]
+    "strict": true
+  }
 }
