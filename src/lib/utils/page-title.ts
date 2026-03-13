@@ -1,4 +1,4 @@
-import { PUBLIC_APP_TITLE } from '$env/static/public'
+import { PUBLIC_APP_NAME } from '$env/static/public'
 
 /**
  * @description
@@ -7,4 +7,4 @@ import { PUBLIC_APP_TITLE } from '$env/static/public'
  * なければサイトタイトルのみを返す。
  */
 export const pageTitle = (title?: string): string =>
-  title ? `${title} | ${PUBLIC_APP_TITLE}` : PUBLIC_APP_TITLE
+  title ? `${title} | ${PUBLIC_APP_NAME}` : PUBLIC_APP_NAME
