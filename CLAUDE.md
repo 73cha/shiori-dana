@@ -29,11 +29,11 @@
 - 言語: TypeScript
 - ビルドツール: Vite
 - アーキテクチャ: SPA
-- データフロー: Notion DB → JSON → MiniSearchインデックス
+- データフロー: Notion DB → JSON → filterで絞り込み
 
 ## 利用したいサービス
 - DB: Notion
-- リアルタイム検索: [MiniSearch](https://lucaong.github.io/minisearch/)
+- リアルタイム検索: Array.filter()による部分一致検索
 - ホスティング: Vercel
 - ブックマーク更新: Vercel Serverless Functions（API Routes）
 - 更新通知: トースト表示（async/await）
@@ -50,7 +50,7 @@ UIの更新ボタン
   ↓ レスポンスとしてJSONを返却
 クライアント
   ↓ async/awaitで受け取り
-  ↓ stateを差し替え + MiniSearchインデックス再構築
+  ↓ stateを差し替え
 トースト通知（成功 or 失敗）
 ```
 
@@ -60,13 +60,13 @@ UIの更新ボタン
 初期読み込み（Notion → JSON） → 一覧表示
 
 ### 一覧表示からの操作
-- **検索中**: MiniSearchで絞り込み → 一覧表示
+- **検索中**: filterで絞り込み → 一覧表示
 - **タグ編集**: Notion API更新 → 一覧表示
 - **削除確認**: モーダルダイアログ表示 → 削除実行 → 一覧表示
 - **更新リクエスト**: API POST → 更新中
 
 ### 更新フロー（Serverless Function）
-更新中（async/awaitで待機） → 更新完了（トースト通知） → state差し替え + インデックス再構築
+更新中（async/awaitで待機） → 更新完了（トースト通知） → state差し替え
 
 ### エラー時
 更新中 → エラー（トーストでエラー表示） → 一覧表示

@@ -9,7 +9,7 @@
 │   ├── <button>（更新）
 │   └── SearchBar
 ├── BookmarkCard（繰り返し）
-│   ├── 画像 / タイトル / 説明 / タグ一覧
+│   ├── 画像 / タイトル / 説明 / 日付 / タグ一覧
 │   └── <button>（削除）
 ├── Pagination
 ├── 検索結果なし表示（{#if} で制御）
@@ -25,7 +25,7 @@
 | 2 | SearchBar       | `src/lib/components/SearchBar.svelte`       |
 | 3 | BookmarkCard    | `src/lib/components/BookmarkCard.svelte`    |
 
-ボタン・ダイアログ・トースト・ヘッダーは HTML/Popover API（`<button>`, `<dialog>`, `<div popover>`, `<header>`）で実現する。
+ボタン・ダイアログ・トースト・ヘッダー・タグ一覧・検索結果なし表示は HTML/Popover API（`<button>`, `<dialog>`, `<div popover>`, `<header>`）で実現する。
 
 ---
 
@@ -97,11 +97,13 @@ interface Props {
 - サムネイル画像（`bookmark.img`、`loading="lazy"`）
 - タイトル（リンク: `bookmark.url`、`target="_blank"`）
 - 説明文（`bookmark.description`）
+- 日付（`bookmark.date`、`<time>` 要素で表示）
 - タグ一覧（`bookmark.tags` を `{#each}` で表示）
 - 削除ボタン（`<button>`）
 
 **動作:**
 - 検索語のハイライトは親側から `use:highlightMatches` action で適用
+- タグクリックで `?tag=xxx` URLパラメータによる絞り込み
 - デザイントークン: `--shioridana-card`, `--shioridana-card-foreground`, `--shioridana-radius-m`
 
 ---
@@ -114,10 +116,9 @@ interface Props {
 
 | 状態 | 所在 | 説明 |
 | --- | --- | --- |
-| bookmarks | +page.svelte | 全ブックマークデータ |
-| miniSearchIndex | +page.svelte | MiniSearch インデックス |
+| bookmarks | +page.svelte | 全ブックマークデータ（load関数から取得） |
 | searchQuery | +page.svelte | 検索クエリ |
-| filteredBookmarks | +page.svelte | 検索結果（派生） |
+| filteredBookmarks | +page.svelte | 検索結果（`Array.filter()` による派生） |
 | currentPage | URL サーチパラメータ | SvelteKit の `$page.url.searchParams` から派生 |
 | paginatedBookmarks | +page.svelte | 表示対象（派生） |
 | deleteTargetId | +page.svelte | 削除対象のブックマークID |
@@ -127,63 +128,61 @@ interface Props {
 
 - 親 → 子: props（単方向）
 - ページ遷移: `onPageChange` → `goto('?page=N')` → `$page.url.searchParams` が更新 → `currentPage` が派生更新
+- 検索: `Array.filter()` で title / description / tags を部分一致検索
 - 検索クエリ変更時、ページを 1 にリセット
-- 更新成功時、bookmarks を差し替え + インデックス再構築
-- 削除成功時、bookmarks から除去 + インデックスから削除
+- 更新成功時、`invalidateAll()` で bookmarks を再取得
+- 削除成功時、`invalidateAll()` で bookmarks を再取得
+- タグフィルター: タグクリック → `?tag=xxx` URLパラメータで絞り込み
 
 ---
 
 ## 共有型定義
 
-### src/lib/types/bookmark.ts
+### src/lib/types.ts
 
 ```typescript
 export interface Bookmark {
   id: string
   title: string
-  url: string
+  url: AnyUrl
   description: string
-  img: string
-  tags: string[]
+  img: AnyUrl
+  tags: { id: string; tag: string }[]
+  date: YYYYMMDD
 }
 
-```
-
-### src/lib/types/api.ts
-
-```typescript
-import type { Bookmark } from './bookmark'
-
-export interface UpdateResponse {
+export type BookmarksResponse = {
   bookmarks: Bookmark[][]
 }
 
-export interface ErrorResponse {
+export type DeleteResponse = {
+  success: true
+}
+
+export type ErrorResponse = {
   error: string
 }
+
+export type YYYYMMDD = `${YYYY}-${MM}-${DD}`
+
+export type AnyUrl = HttpUrl | HttpsUrl
 ```
 
 ---
 
 ## ユーティリティ
 
-### src/lib/utils/search.ts
-- `createSearchIndex(bookmarks)`: MiniSearch インデックス生成
-- `rebuildSearchIndex(index, bookmarks)`: インデックス再構築
-- 検索対象フィールド: title, description, tags
-- ブースト: title × 2、tags × 1.5
-- オプション: fuzzy 0.2、prefix true
+### src/lib/utils/page-title.ts
+- `pageTitle(title?)`: ページタイトルを合成（`title | APP_NAME` または `APP_NAME`）
 
 ### src/lib/utils/highlight.ts
 - CSS Custom Highlight API + `TreeWalker` による検索語ハイライト
 - Svelte action（`use:highlightMatches`）として提供
 - DOM を書き換えず `::highlight()` 擬似要素でスタイリング
-- 参考: https://janosh.dev/posts/svelte-highlight-matching-text-action
 
 ### src/lib/utils/api.ts
 - `fetchUpdatedBookmarks()`: POST `/api/v1/bookmarks/update/`
 - `deleteBookmark(id)`: DELETE `/api/v1/bookmarks/[id]`
-- タグ編集API: 将来の拡張（後述）
 
 ---
 
@@ -194,15 +193,14 @@ src/
 ├── lib/
 │   ├── components/      # 全コンポーネントをフラットに配置
 │   ├── server/          # Notion API（サーバー専用）
-│   │   ├── notion.ts
-│   │   └── types.ts
-│   ├── types/           # bookmark.ts, api.ts
-│   ├── utils/           # search.ts, highlight.ts, api.ts
-│   └── styles/          # tokens.css, reset.css, global.css
+│   │   └── notion.ts
+│   ├── types.ts         # Bookmark, AnyUrl, YYYYMMDD 等
+│   ├── utils/           # page-title.ts, highlight.ts, api.ts
+│   └── styles/          # design-token.css
 ├── routes/
-│   ├── +layout.ts       # export const ssr = false
-│   ├── +layout.svelte   # グローバルスタイル読み込み
-│   ├── +page.svelte     # メインページ
+│   ├── +layout.server.ts # load関数（Notion → bookmarks取得）
+│   ├── +layout.svelte    # グローバルスタイル読み込み
+│   ├── +page.svelte      # メインページ
 │   └── api/v1/bookmarks/
 │       ├── update/
 │       │   └── +server.ts
@@ -211,34 +209,3 @@ src/
 ├── app.html
 └── app.css
 ```
-
----
-
-## 将来の拡張: タグ編集
-
-### 概要
-ブックマークのタグをフロントエンドから追加・削除・修正できるようにする。現在タグ編集は Notion 側で行っているが、アプリ内で完結させることで UX を向上させる。
-
-### UI
-- 修正: タグをダブルクリック → `contenteditable` で編集 → `blur` で確定
-- 削除: タグの右端に削除ボタン`X`配置する → 確認ダイアログの表示
-- 追加: タグリストの右端に`+`ボタンを配置し、タグを追加できるようにする
-
-### データフロー
-```
-タグ操作（追加 / 削除 / 修正）
-  ↓ 操作のたびにデバウンス（立て続けの操作をまとめる）
-  ↓ デバウンス後、編集後のタグ配列を JSON に成形
-  ↓ PATCH /api/v1/bookmarks/[id]（ペイロード: { tags: string[] }）
-  ↓ +server.ts ハンドラーで Notion API の multi_select を更新
-  ↓ レスポンス
-クライアント
-  ↓ bookmarks の該当エントリを更新
-  ↓ MiniSearch インデックスを更新
-```
-
-### 変更が必要なファイル
-- `src/lib/components/TagList.svelte`: タグ一覧を独立コンポーネントとして切り出し、編集UIを実装
-- `src/lib/utils/api.ts`: `updateBookmarkTags(id, tags)` を追加
-- `src/routes/api/v1/bookmarks/[id]/+server.ts`: `PATCH` ハンドラーを追加
-- `src/lib/server/notion.ts`: タグ更新関数を追加
