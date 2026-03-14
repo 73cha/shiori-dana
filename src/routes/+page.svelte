@@ -3,7 +3,6 @@
   import type { YYYYMMDD } from '$lib/types'
   import { page } from '$app/state'
   import { pageTitle } from '$lib/utils/page-title'
-  import { goto } from '$app/navigation'
 
   const PER_PAGE = 16
   const PER_ITEM = 3
@@ -48,14 +47,6 @@
   )
 
   const isCurrentPage = (pageNum: number) => pageNum === searchParam
-  const changePage = (pageNumber: number) => {
-    page.url.searchParams.set('page', `${pageNumber}`)
-    // eslint-disable-next-line svelte/no-navigation-without-resolve
-    goto(page.url, {
-      replaceState: false, //historyStateを置き換えるか 履歴を残したいので`false`
-      keepFocus: true,
-    })
-  }
   const incrementPageNationIndex = () => (pageNationIndex += 1)
   const decrementPageNationIndex = () => (pageNationIndex -= 1)
   const toLocaleDate = (
@@ -100,7 +91,8 @@
       <ul class="BookmarkTags">
         {#each bookmark.tags as tag (tag.id)}
           <li>
-            <button>{tag.tag}</button>
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+            <a href={`/?tag=${tag.tag}`}>{tag.tag}</a>
           </li>
         {/each}
       </ul>
@@ -125,13 +117,12 @@
     <!-- eslint-disable-next-line svelte/require-each-key -->
     {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
       <li>
-        <button
-          disabled={isCurrentPage(pageNationItem)}
-          aria-current={isCurrentPage(pageNationItem) ? 'page' : false}
-          onclick={() => changePage(pageNationItem)}
+        <!-- eslint-disable-next-line svelte/no-navigation-without-resolve --><!-- prettier-ignore -->
+        <a href={`?page=${pageNationItem}`}
+          aria-current={isCurrentPage(pageNationItem) ? 'page' : null}
         >
           {pageNationItem}
-        </button>
+        </a>
       </li>
     {/each}
   </ol>
@@ -224,5 +215,10 @@
     column-gap: 0.5em;
     align-items: center;
     justify-content: center;
+
+    & :where([aria-current='page']) {
+      pointer-events: none;
+      text-decoration: none;
+    }
   }
 </style>
