@@ -2,10 +2,31 @@
   import type { PageProps } from './$types'
   import { pageTitle } from '$lib/utils/page-title'
   import type { YYYYMMDD } from '$lib/types'
-  let { data }: PageProps = $props()
-  let bookmarks = $derived(data.bookmarks)
 
-  const toLocaleDate = (dateString: YYYYMMDD) => {
+  const PER_PAGE = 16
+  const PER_ITEM = 3
+
+  let { data }: PageProps = $props()
+  let pageNationIndex = $state(0)
+  let bookmarks = $derived(data.bookmarks)
+  let bookmarksLength = $derived(bookmarks.length)
+  let totalPages = $derived(Math.ceil(bookmarksLength / PER_PAGE))
+  let pageNationItems = $derived(
+    Array.from(Array(totalPages), (_, i) => i + 1)
+      .map((v, _, self) => {
+        if (v % PER_ITEM === 1) {
+          return self.slice(v - 1, PER_ITEM + (v - 1))
+        }
+      })
+      .filter((v) => v !== undefined),
+  )
+  let pageNationLength = $derived(pageNationItems.length - 1)
+  let hasNextPageNation = $derived(pageNationIndex < pageNationLength)
+  let hasPrevPageNation = $derived(pageNationIndex > 0)
+
+  const toLocaleDate = (
+    dateString: YYYYMMDD,
+  ): `${string}年${string}月${string}日` | undefined => {
     const datePattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/
 
     if (!datePattern.test(dateString)) {
@@ -60,6 +81,21 @@
     </article>
   {/each}
 </div>
+
+<nav class="PageNationLayout">
+  {#if hasPrevPageNation}
+    <button onclick={() => (pageNationIndex -= 1)}>前</button>
+  {/if}
+  <ol class="PageNation">
+    <!-- eslint-disable-next-line svelte/require-each-key -->
+    {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
+      <li><button>{pageNationItem}</button></li>
+    {/each}
+  </ol>
+  {#if hasNextPageNation}
+    <button onclick={() => (pageNationIndex += 1)}>次</button>
+  {/if}
+</nav>
 
 <style>
   img {
@@ -118,22 +154,31 @@
   }
 
   .BookmarkTitle {
-    /* grid-area: title; */
   }
 
   .BookmarkDate {
-    /* grid-area: date; */
   }
 
   .BookmarkDescription {
-    /* grid-area: description; */
   }
 
   .BookmarkTags {
-    /* grid-area: tags; */
   }
 
   .BookmarkDelButton {
-    /* grid-area: button; */
+  }
+
+  .PageNationLayout {
+    display: block flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .PageNation {
+    display: block flex;
+    list-style-type: '';
+    column-gap: 0.5em;
+    align-items: center;
+    justify-content: center;
   }
 </style>
