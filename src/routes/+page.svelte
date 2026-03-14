@@ -1,16 +1,29 @@
 <script lang="ts">
   import type { PageProps } from './$types'
-  import { pageTitle } from '$lib/utils/page-title'
   import type { YYYYMMDD } from '$lib/types'
+  import { page } from '$app/state'
+  import { pageTitle } from '$lib/utils/page-title'
+  import { goto } from '$app/navigation'
 
   const PER_PAGE = 16
   const PER_ITEM = 3
 
   let { data }: PageProps = $props()
-  let pageNationIndex = $state(0)
   let bookmarks = $derived(data.bookmarks)
   let bookmarksLength = $derived(bookmarks.length)
   let totalPages = $derived(Math.ceil(bookmarksLength / PER_PAGE))
+  let searchParam = $derived(
+    (() => {
+      const params = parseInt(page.url.searchParams.get('page') ?? '1', 10)
+
+      if (isNaN(params) || params > totalPages || params < 1) {
+        return 1
+      }
+
+      return params
+    })(),
+  )
+  let pageNationIndex = $state(0)
   let pageNationItems = $derived(
     Array.from(Array(totalPages), (_, i) => i + 1)
       .map((v, _, self) => {
@@ -24,6 +37,25 @@
   let hasNextPageNation = $derived(pageNationIndex < pageNationLength)
   let hasPrevPageNation = $derived(pageNationIndex > 0)
 
+  let filteredBookmarks = $derived(
+    (() => {
+      const page_number = searchParam
+      const start = (page_number - 1) * PER_PAGE
+      const end = start + PER_PAGE
+
+      return bookmarks.slice(start, end)
+    })(),
+  )
+
+  const isCurrentPage = (pageNum: number) => pageNum === searchParam
+  const changePage = (pageNumber: number) => {
+    page.url.searchParams.set('page', `${pageNumber}`)
+    // eslint-disable-next-line svelte/no-navigation-without-resolve
+    goto(page.url, {
+      replaceState: false, //historyStateを置き換えるか 履歴を残したいので`false`
+      keepFocus: true,
+    })
+  }
   const incrementPageNationIndex = () => (pageNationIndex += 1)
   const decrementPageNationIndex = () => (pageNationIndex -= 1)
   const toLocaleDate = (
@@ -49,7 +81,7 @@
 <h1>{pageTitle()}</h1>
 
 <div class="BookmarkList">
-  {#each bookmarks as bookmark (bookmark.id)}
+  {#each filteredBookmarks as bookmark (bookmark.id)}
     <article class="Bookmark">
       <div class="BookmarkImgWrap">
         <a href={bookmark.url} rel="external noopener" target="_blank">
@@ -84,7 +116,7 @@
   {/each}
 </div>
 
-<nav class="PageNationLayout">
+<nav class="PageNationLayout" aria-label="ページネーション">
   <button onclick={decrementPageNationIndex} disabled={!hasPrevPageNation}>
     前
   </button>
@@ -92,7 +124,15 @@
   <ol class="PageNation">
     <!-- eslint-disable-next-line svelte/require-each-key -->
     {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
-      <li><button>{pageNationItem}</button></li>
+      <li>
+        <button
+          disabled={isCurrentPage(pageNationItem)}
+          aria-current={isCurrentPage(pageNationItem) ? 'page' : false}
+          onclick={() => changePage(pageNationItem)}
+        >
+          {pageNationItem}
+        </button>
+      </li>
     {/each}
   </ol>
 
