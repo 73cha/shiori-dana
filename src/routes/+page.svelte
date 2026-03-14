@@ -24,6 +24,8 @@
   let hasNextPageNation = $derived(pageNationIndex < pageNationLength)
   let hasPrevPageNation = $derived(pageNationIndex > 0)
 
+  const incrementPageNationIndex = () => (pageNationIndex += 1)
+  const decrementPageNationIndex = () => (pageNationIndex -= 1)
   const toLocaleDate = (
     dateString: YYYYMMDD,
   ): `${string}年${string}月${string}日` | undefined => {
@@ -83,18 +85,20 @@
 </div>
 
 <nav class="PageNationLayout">
-  {#if hasPrevPageNation}
-    <button onclick={() => (pageNationIndex -= 1)}>前</button>
-  {/if}
+  <button onclick={decrementPageNationIndex} disabled={!hasPrevPageNation}>
+    前
+  </button>
+
   <ol class="PageNation">
     <!-- eslint-disable-next-line svelte/require-each-key -->
     {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
       <li><button>{pageNationItem}</button></li>
     {/each}
   </ol>
-  {#if hasNextPageNation}
-    <button onclick={() => (pageNationIndex += 1)}>次</button>
-  {/if}
+
+  <button onclick={incrementPageNationIndex} disabled={!hasNextPageNation}>
+    次
+  </button>
 </nav>
 
 <style>
