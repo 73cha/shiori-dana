@@ -35,7 +35,7 @@
 - DB: Notion
 - リアルタイム検索: Array.filter()による部分一致検索
 - ホスティング: Vercel
-- ブックマーク更新: Vercel Serverless Functions（API Routes）
+- ブックマーク更新: Notion API
 - 更新通知: トースト表示（async/await）
 
 ### ブックマーク更新の流れ
@@ -61,7 +61,7 @@ UIの更新ボタン
 
 ### 一覧表示からの操作
 - **検索中**: filterで絞り込み → 一覧表示
-- **タグ編集**: Notion API更新 → 一覧表示
+- **タグ検索**: filterで絞り込み → 一覧表示
 - **削除確認**: モーダルダイアログ表示 → 削除実行 → 一覧表示
 - **更新リクエスト**: API POST → 更新中
 
