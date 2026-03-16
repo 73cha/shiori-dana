@@ -35,3 +35,12 @@ type HttpUrl = `http://${string}`
 type HttpsUrl = `https://${string}`
 
 export type AnyUrl = HttpUrl | HttpsUrl
+
+/**
+ * @summary `await`漏れの事故を防ぐ
+ * @link https://iwb.jp/typescript-promise-awaited-utility-types/
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AwaitedPromise<T extends (...args: any) => any> = Awaited<
+  ReturnType<T>
+>
