@@ -5,25 +5,42 @@
   import type { Bookmark, BookmarksResponse } from '$lib/types'
   import { onMount } from 'svelte'
 
-  const PER_PAGE = 16
-
-  const PER_ITEM = 3
   let bookmarks = $state<Bookmark[]>([])
   let pageNationIndex = $state(0)
-  let isOccuredError = $state(false)
+  let isError = $state(false)
+  let isProcessing = $state(false)
+
+  const PER_PAGE = 16
+  const PER_ITEM = 3
 
   onMount(async () => {
+    isProcessing = true
+
     const response = await fetch('/api/v1/bookmarks')
 
     if (response.status !== 200) {
-      isOccuredError = true
+      isProcessing = false
+      isError = true
+
       return
     }
 
     const { bookmarks: _bookmarks }: BookmarksResponse = await response.json()
 
     bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
+
+    isProcessing = false
+
+    setPageNationIndexOnMount()
   })
+
+  const setPageNationIndexOnMount = () => {
+    const index = pageNationItems.findIndex((item) => {
+      return item.includes(searchParam)
+    })
+
+    pageNationIndex = index < 0 ? 0 : index
+  }
 
   /**
    * @description ここでスライスはしない
@@ -112,6 +129,7 @@
 
     return `${year}年${month}月${date}日`
   }
+
   const searchParamBuilder = (pageNumber: number) => {
     // eslint-disable-next-line svelte/prefer-svelte-reactivity
     const params = new URLSearchParams(page.url.searchParams)
@@ -120,6 +138,9 @@
 
     return `?${params.toString()}`
   }
+
+  const isFetching = $derived(!isError && isProcessing && bookmarksLength === 0)
+  const isTagFiltered = $derived(!isProcessing && searchParamsTag)
 </script>
 
 <svelte:head>
@@ -130,16 +151,16 @@
 <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 <h1><a href="/">{pageTitle()}</a></h1>
 
-{#if bookmarksLength > 0 && searchParamsTag}
-  <p>タグ:{searchParamsTag}は{bookmarksLength}件あります。</p>
-{/if}
-
-{#if isOccuredError}
-  データ取得中にエラーが発生しました。再度、読み込みをしてください。
-{/if}
-
-{#if !isOccuredError && bookmarksLength === 0}
+{#if isFetching}
   <p>データの取得中...</p>
+{/if}
+
+{#if isTagFiltered}
+  <p>タグ:{searchParamsTag}は{bookmarksLength}件です。</p>
+{/if}
+
+{#if isError}
+  データ取得中にエラーが発生しました。再度、読み込みをしてください。
 {/if}
 
 {#if bookmarksLength > 0}
@@ -182,12 +203,16 @@
     {/each}
   </div>
 
-  <nav class="PageNationLayout" aria-label="ページネーション">
-    <button onclick={decrementPageNationIndex} disabled={!hasPrevPageNation}>
-      前
-    </button>
-
+  <nav aria-label="ページネーション">
     <ol class="PageNation">
+      <li>
+        <button
+          onclick={decrementPageNationIndex}
+          disabled={!hasPrevPageNation}
+        >
+          前
+        </button>
+      </li>
       <!-- eslint-disable-next-line svelte/require-each-key -->
       {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
         <li>
@@ -199,11 +224,15 @@
         </a>
         </li>
       {/each}
+      <li>
+        <button
+          onclick={incrementPageNationIndex}
+          disabled={!hasNextPageNation}
+        >
+          次
+        </button>
+      </li>
     </ol>
-
-    <button onclick={incrementPageNationIndex} disabled={!hasNextPageNation}>
-      次
-    </button>
   </nav>
 {/if}
 
@@ -278,22 +307,39 @@
   .BookmarkDelButton {
   }
 
-  .PageNationLayout {
-    display: block flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .PageNation {
     display: block flex;
     list-style-type: '';
-    column-gap: 0.5em;
+    gap: 0.25em 0.5em;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
+    margin-block: 1.5rem;
+
+    & :where(li) {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: calc(40 * calc(tan(atan2(1px, 16px))) * 1rem);
+      text-align: center;
+    }
+
+    & :where(button[disabled]) {
+      background-color: oklch(from black calc(1 - 0.15) c h);
+      border-color: oklch(from black calc(1 - 0.33) c h);
+      color: oklch(from black calc(1 - 0.33) c h);
+    }
+
+    & :where(a) {
+      display: block grid;
+      place-content: center;
+      border: solid 1px black;
+      aspect-ratio: 1;
+    }
 
     & :where([aria-current='page']) {
       pointer-events: none;
-      text-decoration: none;
+      background-color: black;
+      color: oklch(1 1 1);
     }
   }
 </style>
