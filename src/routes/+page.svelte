@@ -30,17 +30,13 @@
     bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
 
     isProcessing = false
-
-    setPageNationIndexOnMount()
   })
 
-  const setPageNationIndexOnMount = () => {
-    const index = pageNationItems.findIndex((item) => {
-      return item.includes(searchParam)
-    })
+  $effect(() => {
+    const index = pageNationItems.findIndex((item) => item.includes(searchParam))
 
     pageNationIndex = index < 0 ? 0 : index
-  }
+  })
 
   /**
    * @description ここでスライスはしない
@@ -339,7 +335,7 @@
     & :where([aria-current='page']) {
       pointer-events: none;
       background-color: black;
-      color: oklch(1 1 1);
+      color: white;
     }
   }
 </style>
