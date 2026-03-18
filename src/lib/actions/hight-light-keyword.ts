@@ -1,6 +1,10 @@
 import type { Action } from 'svelte/action'
 
 const highLight = (node: HTMLElement, query: string) => {
+  // MEMO:
+  // ライフサイクルフックでは、DOMが削除された時だけしかハイライトを削除できない
+  // そのため、検索クエリが変わった時に、以前のハイライトが残ってしまう
+  // その対策で最初にハイライトを削除する
   CSS.highlights.delete('search-result')
 
   if (!query) {
@@ -32,16 +36,30 @@ const highLight = (node: HTMLElement, query: string) => {
     ranges.push(range)
   }
 
+  // MEMO:
+  // マッチしないキーワードで検索されたときの対策
   if (ranges.length > 0) {
     CSS.highlights.set('search-result', new Highlight(...ranges))
   }
 }
 
+/**
+ * @description
+ * 検索キーワードにマッチした語をハイライトする関数\
+ * 検索欄からの検索でハイライト
+ */
 export const highLightKeyword: Action<HTMLElement, string> = (node, query) => {
+  // MEMO:
+  // `update`を発火させるための変数
+  // `update`で新しい検索キーワードを再代入することで、
+  // ライフサイクルを発火させる
   let currentQuery = query
 
   highLight(node, currentQuery)
 
+  // MEMO:
+  // ページネーション対策
+  // DOMの変更を検知し、`highLight()`を再実行する
   const observer = new MutationObserver(() => {
     highLight(node, currentQuery)
   })

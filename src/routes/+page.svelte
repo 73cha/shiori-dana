@@ -48,17 +48,14 @@
     isFilteringByDefault: !searchParamTag && !searchParamQuery,
   })
 
-  /**
-   * @description ここでスライスはしない
-   * フィルターしたデータを返すだけ
-   * ページネーションのアイテム数が正しく反映されないため
-   * テンプレートでスライスする
-   */
+  // MEMO:
+  // ここでスライスはしない
+  // フィルターしたデータを返すだけ
+  // ページネーションのアイテム数が正しく反映されないため
+  // テンプレートでスライスする
   const filteredBookmarks = $derived.by(() => {
     return bookmarks.filter((bookmark) => {
-      /**
-       * @description 検索欄での検索
-       */
+      // 検索欄での検索
       if (
         flags.isFilteringByQuery &&
         searchParamQuery &&
@@ -71,18 +68,12 @@
         return bookmark
       }
 
-      /**
-       * @desription タグでの取得
-       */
-      // if (!searchParamQuery && searchParamTag) {
+      // タグでの取得
       if (flags.isFilteringByTag) {
         return bookmark.tags.some((tag) => tag.tag === searchParamTag)
       }
 
-      /**
-       * @desription 通常の取得。許可するのは、`page`だけ
-       */
-      // if (!searchParamTag && !searchParamQuery) {
+      // 通常の取得
       if (flags.isFilteringByDefault) {
         return bookmark
       }
@@ -144,28 +135,27 @@
   const incrementPageNationIndex = () => (pageNationIndex += 1)
   const decrementPageNationIndex = () => (pageNationIndex -= 1)
 
-  /**
-   * @description タグをクリックしたときは、
-   * ページネーションのインデックスをリセットする
-   * ページネーションが複数ページある場合と1ページしかない場合、
-   * インデックスがリセットされないと、1ページの時に存在しない
-   * インデックスを参照してしまうため
-   *
-   * ページネーションが3ページ
-   * const data1 = [[1, 2, 3], [4, 5, 6], [7]]
-   *
-   * ページネーションが1ページ
-   * const data2 = [[1]]
-   *
-   * ページネーションが3ページの時、data1[2]まで操作した状態で、
-   * タグをクリックすると、インデックスはリセットされていないため、
-   * 1ページの時に存在しないインデックスで参照されてしまう
-   *
-   * 1ページ: インデックスは`0`だけ
-   * 3ページ: 3ページ目まで送ると、インデックスは`2`になる
-   *
-   * リセットしないと、data2[2]になって存在しない
-   */
+  // MEMO:
+  // タグをクリックしたときは、
+  // ページネーションのインデックスをリセットする
+  // ページネーションが複数ページある場合と1ページしかない場合、
+  // インデックスがリセットされないと、1ページの時に存在しない
+  // インデックスを参照してしまうため
+  //
+  // ページネーションが3ページ
+  // const data1 = [[1, 2, 3], [4, 5, 6], [7]]
+  //
+  // ページネーションが1ページ
+  // const data2 = [[1]]
+  //
+  // ページネーションが3ページの時、data1[2]まで操作した状態で、
+  // タグをクリックすると、インデックスはリセットされていないため、
+  // 1ページの時に存在しないインデックスで参照されてしまう
+  //
+  // 1ページ: インデックスは`0`だけ
+  // 3ページ: 3ページ目まで送ると、インデックスは`2`になる
+  //
+  // リセットしないと、data2[2]になって存在しない
   const resetPageNationIndex = () => (pageNationIndex = 0)
 
   const isCurrentPage = (pageNum: number) => pageNum === validSearchParamPage
@@ -203,6 +193,8 @@
     // eslint-disable-next-line svelte/prefer-svelte-reactivity
     const params = new URLSearchParams(page.url.searchParams)
 
+    // MEMO:
+    // 検索の時は、`query`以外のパラメーターは削除する
     params.delete('tag')
     params.delete('page')
     params.set('query', query.toLowerCase())
@@ -210,7 +202,7 @@
     // eslint-disable-next-line svelte/no-navigation-without-resolve
     goto(`?${params.toString()}`, { keepFocus: true, noScroll: true })
 
-    // target.value = ''
+    target.value = ''
   }
 </script>
 

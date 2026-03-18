@@ -2,9 +2,9 @@ import { PUBLIC_APP_NAME } from '$env/static/public'
 
 /**
  * @description
- * ページのタイトルを合成するユーティリティー関数。\
+ * ページのタイトルを合成するユーティリティー関数\
  * 引数(各ページのタイトル)があれば、合成したタイトルを返し、\
- * なければサイトタイトルのみを返す。
+ * なければサイトタイトルのみを返す
  */
 export const pageTitle = (title?: string): string =>
   title ? `${title} | ${PUBLIC_APP_NAME}` : PUBLIC_APP_NAME

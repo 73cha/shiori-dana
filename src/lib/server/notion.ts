@@ -7,10 +7,10 @@ type PageProperty =
 type MultiSelect = { id: string; tag: string }[]
 
 const notion = new Client({ auth: NOTION_API_KEY })
-
+// MEMO:
 // `multi_select`と他で関数を分けたくないのでオーバーロードする
-// `& { type: 'mult_select' }`でインターセクション型にしたことで、
-// 呼び出し側で`type === 'multi_select`が確定している必要がある
+// インターセクション型のオーバーロードは、
+// 呼出し側で`{ type: XXX }`が確定している必要がある
 function toText(prop: PageProperty & { type: 'multi_select' }): MultiSelect
 function toText(prop: PageProperty & { type: 'date' }): YYYYMMDD
 function toText(prop: PageProperty & { type: 'url' }): AnyUrl
