@@ -10,3 +10,9 @@
 <main>
   {@render children()}
 </main>
+
+<style>
+  main {
+    padding-inline: 1rem;
+  }
+</style>

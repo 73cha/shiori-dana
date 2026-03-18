@@ -4,22 +4,20 @@
   import { pageTitle } from '$lib/utils/page-title'
   import type { Bookmark, BookmarksResponse } from '$lib/types'
   import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
+  import { highLightKeyword } from '$lib/actions/hight-light-keyword'
 
   let bookmarks = $state<Bookmark[]>([])
   let pageNationIndex = $state(0)
   let isError = $state(false)
-  let isProcessing = $state(false)
 
   const PER_PAGE = 16
   const PER_ITEM = 3
 
   onMount(async () => {
-    isProcessing = true
-
     const response = await fetch('/api/v1/bookmarks')
 
     if (response.status !== 200) {
-      isProcessing = false
       isError = true
 
       return
@@ -28,12 +26,12 @@
     const { bookmarks: _bookmarks }: BookmarksResponse = await response.json()
 
     bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
-
-    isProcessing = false
   })
 
   $effect(() => {
-    const index = pageNationItems.findIndex((item) => item.includes(searchParam))
+    const index = pageNationItems.findIndex((item) =>
+      item.includes(validSearchParamPage),
+    )
 
     pageNationIndex = index < 0 ? 0 : index
   })
@@ -46,20 +44,47 @@
    */
   const filteredBookmarks = $derived.by(() => {
     return bookmarks.filter((bookmark) => {
-      if (searchParamsTag) {
-        return bookmark.tags.some((tag) => tag.tag === searchParamsTag)
+      /**
+       * @description 検索欄での検索
+       */
+      if (
+        flags.isFilteringByQuery &&
+        searchParamQuery &&
+        (bookmark.title.includes(searchParamQuery) ||
+          bookmark.description.includes(searchParamQuery) ||
+          bookmark.tags.some((tag) =>
+            tag.tag.toLowerCase().includes(searchParamQuery.toLowerCase()),
+          ))
+      ) {
+        return bookmark
       }
 
-      return bookmark
+      /**
+       * @desription タグでの取得
+       */
+      // if (!searchParamQuery && searchParamTag) {
+      if (flags.isFilteringByTag) {
+        return bookmark.tags.some((tag) => tag.tag === searchParamTag)
+      }
+
+      /**
+       * @desription 通常の取得。許可するのは、`page`だけ
+       */
+      // if (!searchParamTag && !searchParamQuery) {
+      if (flags.isFilteringByDefault) {
+        return bookmark
+      }
     })
   })
 
   const bookmarksLength = $derived(filteredBookmarks.length)
   const totalPages = $derived(Math.ceil(bookmarksLength / PER_PAGE))
 
-  const searchParamsTag = $derived(page.url.searchParams.get('tag'))
-  const searchParam = $derived.by(() => {
-    const params = parseInt(page.url.searchParams.get('page') ?? '1', 10)
+  const searchParamTag = $derived(page.url.searchParams.get('tag'))
+  const searchParamQuery = $derived(page.url.searchParams.get('query'))
+  const searchParamPage = $derived(page.url.searchParams.get('page'))
+  const validSearchParamPage = $derived.by(() => {
+    const params = parseInt(searchParamPage ?? '1', 10)
 
     if (isNaN(params) || params > totalPages || params < 1) {
       return 1
@@ -68,7 +93,7 @@
     return params
   })
 
-  const start = $derived((searchParam - 1) * PER_PAGE)
+  const start = $derived((validSearchParamPage - 1) * PER_PAGE)
   const end = $derived(start + PER_PAGE)
 
   const pageNationItems = $derived.by(() => {
@@ -111,7 +136,7 @@
    */
   const resetPageNationIndex = () => (pageNationIndex = 0)
 
-  const isCurrentPage = (pageNum: number) => pageNum === searchParam
+  const isCurrentPage = (pageNum: number) => pageNum === validSearchParamPage
   const toLocaleDate = (
     dateString: YYYYMMDD,
   ): `${string}年${string}月${string}日` | undefined => {
@@ -135,24 +160,68 @@
     return `?${params.toString()}`
   }
 
-  const isFetching = $derived(!isError && isProcessing && bookmarksLength === 0)
-  const isTagFiltered = $derived(!isProcessing && searchParamsTag)
+  const searchByQuery = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    const query = target.value.trim()
+
+    if (!query) {
+      return
+    }
+
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity
+    const params = new URLSearchParams(page.url.searchParams)
+
+    params.delete('tag')
+    params.delete('page')
+    params.set('query', query.toLowerCase())
+
+    // eslint-disable-next-line svelte/no-navigation-without-resolve
+    goto(`?${params.toString()}`, { keepFocus: true, noScroll: true })
+
+    target.value = ''
+  }
+
+  const flags = $derived({
+    isInitializing:
+      !isError &&
+      !searchParamTag &&
+      !searchParamPage &&
+      !searchParamQuery &&
+      bookmarks.length === 0,
+    isFilteringByTag: searchParamTag && !searchParamQuery,
+    isFilteringByQuery: searchParamQuery && !searchParamTag,
+    isFilteringByDefault: !searchParamTag && !searchParamQuery,
+  })
 </script>
 
 <svelte:head>
+  <meta />
   <title>{pageTitle()}</title>
   <meta name="description" content="個人的なブックマーク管理アプリ 栞棚" />
+  <meta name="color-scheme" content="light dark" />
 </svelte:head>
 
-<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-<h1><a href="/">{pageTitle()}</a></h1>
+<header class="AppHeader">
+  <h1 class="AppLogo">
+    <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+    <a href="/">{pageTitle()}</a>
+  </h1>
 
-{#if isFetching}
+  <div class="SearchBar">
+    <input type="search" onchange={(event) => searchByQuery(event)} />
+  </div>
+</header>
+
+{#if flags.isInitializing}
   <p>データの取得中...</p>
 {/if}
 
-{#if isTagFiltered}
-  <p>タグ:{searchParamsTag}は{bookmarksLength}件です。</p>
+{#if flags.isFilteringByTag}
+  <p>タグ:{searchParamTag}は、{bookmarksLength}件です。</p>
+{/if}
+
+{#if flags.isFilteringByQuery}
+  <p>{searchParamQuery}の検索結果は、{bookmarksLength}件です。</p>
 {/if}
 
 {#if isError}
@@ -160,7 +229,7 @@
 {/if}
 
 {#if bookmarksLength > 0}
-  <div class="BookmarkList">
+  <div class="BookmarkList" use:highLightKeyword={searchParamQuery ?? ''}>
     {#each filteredBookmarks.slice(start, end) as bookmark (bookmark.id)}
       <article class="Bookmark">
         <div class="BookmarkImgWrap">
@@ -233,9 +302,17 @@
 {/if}
 
 <style>
-  img {
-    max-inline-size: 100%;
-    block-size: auto;
+  .AppHeader {
+    display: block grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .AppLogo {
+  }
+
+  .SearchBar {
+    grid-column: 3/4;
   }
 
   .BookmarkList {
@@ -262,6 +339,7 @@
 
     display: block grid;
     gap: 1rlh var(--_column-gap);
+    margin-block-start: 2rem;
     margin-inline: auto;
     max-inline-size: var(--_inline-size);
     grid-template-columns: repeat(auto-fill, minmax(var(--_column-width), 1fr));
@@ -320,9 +398,9 @@
     }
 
     & :where(button[disabled]) {
-      background-color: oklch(from black calc(1 - 0.15) c h);
-      border-color: oklch(from black calc(1 - 0.33) c h);
-      color: oklch(from black calc(1 - 0.33) c h);
+      background-color: oklch(from black calc(1 - 0.75) c h);
+      border-color: oklch(from black calc(1 - 0.65) c h);
+      color: oklch(from black calc(1 - 0.5) c h);
     }
 
     & :where(a) {
@@ -334,8 +412,12 @@
 
     & :where([aria-current='page']) {
       pointer-events: none;
-      background-color: black;
+      background-color: oklch(from black calc(1 - 0.65) c h);
       color: white;
     }
+  }
+
+  :global(::highlight(search-result)) {
+    color: red;
   }
 </style>
