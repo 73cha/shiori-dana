@@ -38,13 +38,25 @@ const highLight = (node: HTMLElement, query: string) => {
 }
 
 export const highLightKeyword: Action<HTMLElement, string> = (node, query) => {
-  highLight(node, query)
+  let currentQuery = query
+
+  highLight(node, currentQuery)
+
+  const observer = new MutationObserver(() => {
+    highLight(node, currentQuery)
+  })
+
+  observer.observe(node, { childList: true, subtree: true })
 
   return {
     update(newQuery) {
-      highLight(node, newQuery)
+      currentQuery = newQuery
+
+      highLight(node, currentQuery)
     },
     destroy() {
+      observer.disconnect()
+
       CSS.highlights.delete('search-result')
     },
   }

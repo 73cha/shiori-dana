@@ -210,7 +210,7 @@
     // eslint-disable-next-line svelte/no-navigation-without-resolve
     goto(`?${params.toString()}`, { keepFocus: true, noScroll: true })
 
-    target.value = ''
+    // target.value = ''
   }
 </script>
 
