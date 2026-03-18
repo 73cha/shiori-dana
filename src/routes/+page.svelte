@@ -28,12 +28,24 @@
     bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
   })
 
-  $effect(() => {
-    const index = pageNationItems.findIndex((item) =>
-      item.includes(validSearchParamPage),
-    )
+  // ── URL params ─────────────────────────────────────────────────────────────
 
-    pageNationIndex = index < 0 ? 0 : index
+  const searchParamTag = $derived(page.url.searchParams.get('tag'))
+  const searchParamQuery = $derived(page.url.searchParams.get('query'))
+  const searchParamPage = $derived(page.url.searchParams.get('page'))
+
+  // ── Level 1 ────────────────────────────────────────────────────────────────
+
+  const flags = $derived({
+    isInitializing:
+      !isError &&
+      !searchParamTag &&
+      !searchParamPage &&
+      !searchParamQuery &&
+      bookmarks.length === 0,
+    isFilteringByTag: searchParamTag && !searchParamQuery,
+    isFilteringByQuery: searchParamQuery && !searchParamTag,
+    isFilteringByDefault: !searchParamTag && !searchParamQuery,
   })
 
   /**
@@ -77,12 +89,16 @@
     })
   })
 
+  // ── Level 2 ────────────────────────────────────────────────────────────────
+
   const bookmarksLength = $derived(filteredBookmarks.length)
+
+  // ── Level 3 ────────────────────────────────────────────────────────────────
+
   const totalPages = $derived(Math.ceil(bookmarksLength / PER_PAGE))
 
-  const searchParamTag = $derived(page.url.searchParams.get('tag'))
-  const searchParamQuery = $derived(page.url.searchParams.get('query'))
-  const searchParamPage = $derived(page.url.searchParams.get('page'))
+  // ── Level 4 ────────────────────────────────────────────────────────────────
+
   const validSearchParamPage = $derived.by(() => {
     const params = parseInt(searchParamPage ?? '1', 10)
 
@@ -93,9 +109,6 @@
     return params
   })
 
-  const start = $derived((validSearchParamPage - 1) * PER_PAGE)
-  const end = $derived(start + PER_PAGE)
-
   const pageNationItems = $derived.by(() => {
     return Array.from(Array(totalPages), (_, i) => i + 1)
       .map((v, _, self) => {
@@ -105,9 +118,28 @@
       })
       .filter((v) => v !== undefined)
   })
+
+  // ── Level 5 ────────────────────────────────────────────────────────────────
+
+  const start = $derived((validSearchParamPage - 1) * PER_PAGE)
+  const end = $derived(start + PER_PAGE)
+
   const pageNationLength = $derived(pageNationItems.length - 1)
+
+  // ── Level 6 ────────────────────────────────────────────────────────────────
+
   const hasNextPageNation = $derived(pageNationIndex < pageNationLength)
   const hasPrevPageNation = $derived(pageNationIndex > 0)
+
+  $effect(() => {
+    const index = pageNationItems.findIndex((item) =>
+      item.includes(validSearchParamPage),
+    )
+
+    pageNationIndex = index < 0 ? 0 : index
+  })
+
+  // ── Functions ──────────────────────────────────────────────────────────────
 
   const incrementPageNationIndex = () => (pageNationIndex += 1)
   const decrementPageNationIndex = () => (pageNationIndex -= 1)
@@ -180,18 +212,6 @@
 
     target.value = ''
   }
-
-  const flags = $derived({
-    isInitializing:
-      !isError &&
-      !searchParamTag &&
-      !searchParamPage &&
-      !searchParamQuery &&
-      bookmarks.length === 0,
-    isFilteringByTag: searchParamTag && !searchParamQuery,
-    isFilteringByQuery: searchParamQuery && !searchParamTag,
-    isFilteringByDefault: !searchParamTag && !searchParamQuery,
-  })
 </script>
 
 <svelte:head>
