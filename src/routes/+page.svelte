@@ -201,11 +201,11 @@
   <p>データの取得中...</p>
 {/if}
 
-{#if flags.isFilteringByTag}
+{#if bookmarksLength > 0 && flags.isFilteringByTag}
   <p>タグ:{searchParamTag}は、{bookmarksLength}件です。</p>
 {/if}
 
-{#if flags.isFilteringByQuery}
+{#if bookmarksLength > 0 && flags.isFilteringByQuery}
   <p>{searchParamQuery}の検索結果は、{bookmarksLength}件です。</p>
 {/if}
 
