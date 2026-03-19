@@ -177,6 +177,40 @@
 
     target.value = ''
   }
+
+  const fetchBookmarks = async () => {
+    const response = await fetch('/api/v1/bookmarks')
+
+    if (response.status !== 200) {
+      isError = true
+
+      return
+    }
+
+    const { bookmarks: _bookmarks }: BookmarksResponse = await response.json()
+
+    bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
+  }
+
+  // MEMO:
+  // ライフサイクル、`effect`は最下流に置く
+  // 上流に状態・下流に副作用
+  onMount(() => {
+    fetchBookmarks()
+  })
+
+  // MEMO:
+  // `page`パラメーターがある状態で、リロードされた時の対策
+  // ページネーション自体のページ送りを、パラメーターから再算出する
+  // `findIndex`で`page`パラメータの値を含む配列を探す
+  // 見つかった個所の`index`を返すので、`pageNationIndex`に再代入する
+  $effect(() => {
+    const index = pageNationItems.findIndex((item) =>
+      item.includes(validSearchParamPage),
+    )
+
+    pageNationIndex = index < 0 ? 0 : index
+  })
 </script>
 
 <svelte:head>
@@ -194,6 +228,15 @@
 
   <div class="SearchBar">
     <input type="search" onchange={(event) => searchByQuery(event)} />
+  </div>
+
+  <div class="UpdateButton">
+    <button
+      onclick={() => {
+        bookmarks = []
+        fetchBookmarks()
+      }}>更新</button
+    >
   </div>
 </header>
 
