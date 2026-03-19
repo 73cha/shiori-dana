@@ -1,5 +1,5 @@
 {
-  "version": "2.8",
+  "version": "2.9",
   "children": [
     {
       "type": "frame",
@@ -313,6 +313,8 @@
                     {
                       "type": "frame",
                       "id": "jg6t2",
+                      "x": 0,
+                      "y": 0,
                       "name": "icon-16/x",
                       "enabled": false,
                       "clip": true,
@@ -420,21 +422,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "e1",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Svelte チュートリアル"
+                      "content": "Svelte チュートリアル",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-01-28"
+                      "content": "2025-01-28",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Svelteの基本からストア、アニメーションまで。インタラクティブな学習環境。"
+                      "content": "Svelteの基本からストア、アニメーションまで。インタラクティブな学習環境。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "Svelte"
+                      "content": "Svelte",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 60
                     },
                     "2l8HC": {
-                      "content": "Frontend"
+                      "content": "Frontend",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -444,21 +512,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "e2",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Vercel デプロイガイド"
+                      "content": "Vercel デプロイガイド",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-09-15"
+                      "content": "2024-09-15",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Vercelへのデプロイ方法とサーバーレス関数の設定ガイド。"
+                      "content": "Vercelへのデプロイ方法とサーバーレス関数の設定ガイド。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "DevOps"
+                      "content": "DevOps",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 70
                     },
                     "2l8HC": {
-                      "content": "Hosting"
+                      "content": "Hosting",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -468,21 +602,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "e3",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "GitHub Actions CI/CD"
+                      "content": "GitHub Actions CI/CD",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-05"
+                      "content": "2025-02-05",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "GitHub Actionsを使ったCI/CDパイプラインの構築。ワークフローの書き方。"
+                      "content": "GitHub Actionsを使ったCI/CDパイプラインの構築。ワークフローの書き方。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CI/CD"
+                      "content": "CI/CD",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 59
                     },
                     "2l8HC": {
-                      "content": "GitHub"
+                      "content": "GitHub",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -501,21 +701,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "e4",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "React公式ドキュメント"
+                      "content": "React公式ドキュメント",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-01-15"
+                      "content": "2025-01-15",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Reactの基本概念からフックまで、公式チームによる包括的なドキュメント。初心者から上級者まで。"
+                      "content": "Reactの基本概念からフックまで、公式チームによる包括的なドキュメント。初心者から上級者まで。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Frontend"
+                      "content": "Frontend",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -525,21 +791,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "e5",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "MDN Web Docs"
+                      "content": "MDN Web Docs",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-11-03"
+                      "content": "2024-11-03",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptの仕様を網羅。"
+                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptの仕様を網羅。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "JavaScript"
+                      "content": "JavaScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -549,21 +881,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "e6",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Notion API リファレンス"
+                      "content": "Notion API リファレンス",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-03-01"
+                      "content": "2025-03-01",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Notion APIの公式ドキュメント。データベース操作やページ管理のエンドポイント解説。"
+                      "content": "Notion APIの公式ドキュメント。データベース操作やページ管理のエンドポイント解説。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "API"
+                      "content": "API",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 43
                     },
                     "2l8HC": {
-                      "content": "Notion"
+                      "content": "Notion",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -620,6 +1018,8 @@
                     {
                       "type": "frame",
                       "id": "i7Q1H",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "width": 20,
@@ -895,6 +1295,8 @@
                     {
                       "type": "frame",
                       "id": "stIVE",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "rotation": -0.09980195371053763,
@@ -948,19 +1350,39 @@
           "name": "Toast Error",
           "x": 896,
           "y": 16,
+          "height": "fit_content",
           "descendants": {
             "vJYwo": {
-              "fill": "$--color-error"
+              "fill": "$--color-error",
+              "x": 16,
+              "y": 17
             },
             "9dGX9": {
               "iconFontName": "circle-x",
-              "fill": "$--color-error-foreground"
+              "fill": "$--color-error-foreground",
+              "x": 7,
+              "y": 7
+            },
+            "iDoAR": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 60,
+              "y": 14
             },
             "rH9qE": {
               "content": "更新失敗"
             },
             "1b4cj": {
-              "content": "ブックマークの更新中にエラーが発生しました"
+              "content": "ブックマークの更新中にエラーが発生しました",
+              "y": 21
+            },
+            "JJ8kp": {
+              "x": 316,
+              "y": 19
+            },
+            "aaVRI": {
+              "x": 6,
+              "y": 6
             }
           }
         }
@@ -1278,6 +1700,8 @@
                     {
                       "type": "frame",
                       "id": "5LekI",
+                      "x": 0,
+                      "y": 0,
                       "name": "icon-16/x",
                       "enabled": false,
                       "clip": true,
@@ -1385,21 +1809,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "l1",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "React公式ドキュメント"
+                      "content": "React公式ドキュメント",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-01-15"
+                      "content": "2025-01-15",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Reactの基本概念からフックまで、公式チームによる包括的なドキュメント。初心者から上級者まで。"
+                      "content": "Reactの基本概念からフックまで、公式チームによる包括的なドキュメント。初心者から上級者まで。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Frontend"
+                      "content": "Frontend",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -1409,21 +1899,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "l2",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "MDN Web Docs"
+                      "content": "MDN Web Docs",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-11-03"
+                      "content": "2024-11-03",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptの仕様を網羅。"
+                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptの仕様を網羅。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "JavaScript"
+                      "content": "JavaScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -1433,21 +1989,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "l3",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Notion API リファレンス"
+                      "content": "Notion API リファレンス",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-03-01"
+                      "content": "2025-03-01",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Notion APIの公式ドキュメント。データベース操作やページ管理のエンドポイント解説。"
+                      "content": "Notion APIの公式ドキュメント。データベース操作やページ管理のエンドポイント解説。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "API"
+                      "content": "API",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 43
                     },
                     "2l8HC": {
-                      "content": "Notion"
+                      "content": "Notion",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -1466,21 +2088,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "l4",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "TypeScript Handbook"
+                      "content": "TypeScript Handbook",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-08-22"
+                      "content": "2024-08-22",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "TypeScriptの型システムを基礎から学べる公式ハンドブック。実践的な例が豊富。"
+                      "content": "TypeScriptの型システムを基礎から学べる公式ハンドブック。実践的な例が豊富。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "TypeScript"
+                      "content": "TypeScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 86
                     },
                     "2l8HC": {
-                      "content": "Programming"
+                      "content": "Programming",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -1490,21 +2178,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "l5",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Tailwind CSS ドキュメント"
+                      "content": "Tailwind CSS ドキュメント",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-14"
+                      "content": "2025-02-14",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "ユーティリティファーストのCSSフレームワーク。クラス名の一覧とカスタマイズ方法。"
+                      "content": "ユーティリティファーストのCSSフレームワーク。クラス名の一覧とカスタマイズ方法。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "Design"
+                      "content": "Design",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -1514,21 +2268,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "l6",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Next.js App Router"
+                      "content": "Next.js App Router",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-12-10"
+                      "content": "2024-12-10",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Next.jsの新しいApp Routerの使い方。サーバーコンポーネントとルーティング。"
+                      "content": "Next.jsの新しいApp Routerの使い方。サーバーコンポーネントとルーティング。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Framework"
+                      "content": "Framework",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -1585,6 +2405,8 @@
                     {
                       "type": "frame",
                       "id": "dXrDq",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "width": 20,
@@ -1860,6 +2682,8 @@
                     {
                       "type": "frame",
                       "id": "GbkqB",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "rotation": -0.09980195371053763,
@@ -1913,19 +2737,39 @@
           "name": "Toast Loading",
           "x": 896,
           "y": 16,
+          "height": "fit_content",
           "descendants": {
             "vJYwo": {
-              "fill": "$--color-info"
+              "fill": "$--color-info",
+              "x": 16,
+              "y": 17
             },
             "9dGX9": {
               "iconFontName": "loader",
-              "fill": "$--color-info-foreground"
+              "fill": "$--color-info-foreground",
+              "x": 7,
+              "y": 7
+            },
+            "iDoAR": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 60,
+              "y": 14
             },
             "rH9qE": {
               "content": "更新中..."
             },
             "1b4cj": {
-              "content": "ブックマークデータを取得しています"
+              "content": "ブックマークデータを取得しています",
+              "y": 21
+            },
+            "JJ8kp": {
+              "x": 316,
+              "y": 19
+            },
+            "aaVRI": {
+              "x": 6,
+              "y": 6
             }
           }
         }
@@ -2239,6 +3083,8 @@
                     {
                       "type": "frame",
                       "id": "eowAA",
+                      "x": 0,
+                      "y": 0,
                       "name": "icon-16/x",
                       "enabled": false,
                       "clip": true,
@@ -2343,7 +3189,85 @@
                   "type": "ref",
                   "ref": "1sFPz",
                   "width": "fill_container",
-                  "name": "c1"
+                  "name": "c1",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
+                  "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "GBef9": {
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
+                    },
+                    "n2sRC": {
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
+                    },
+                    "vpFFe": {
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
+                    },
+                    "aIhPz": {
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
+                    },
+                    "2l8HC": {
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
+                    }
+                  }
                 },
                 {
                   "id": "667hJ",
@@ -2351,21 +3275,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "c2",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "MDN Web Docs"
+                      "content": "MDN Web Docs",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-11-03"
+                      "content": "2024-11-03",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptのAPIドキュメント。"
+                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptのAPIドキュメント。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "JavaScript"
+                      "content": "JavaScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -2375,21 +3365,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "c3",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Notion API リファレンス - データベース操作とインテグレーション構築"
+                      "content": "Notion API リファレンス - データベース操作とインテグレーション構築",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-03-01"
+                      "content": "2025-03-01",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Notion APIでデータベースのCRUD操作、ページ作成、ブロック操作などを実現するための公式リファレンス。認証からWebhookまで網羅。"
+                      "content": "Notion APIでデータベースのCRUD操作、ページ作成、ブロック操作などを実現するための公式リファレンス。認証からWebhookまで網羅。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "API"
+                      "content": "API",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 43
                     },
                     "2l8HC": {
-                      "content": "Notion"
+                      "content": "Notion",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -2408,21 +3464,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "c4",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "TypeScript Handbook"
+                      "content": "TypeScript Handbook",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-08-22"
+                      "content": "2024-08-22",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "TypeScriptの型システムを基礎から学べるハンドブック。ジェネリクスやユーティリティ型など高度な型機能も網羅。"
+                      "content": "TypeScriptの型システムを基礎から学べるハンドブック。ジェネリクスやユーティリティ型など高度な型機能も網羅。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "TypeScript"
+                      "content": "TypeScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 86
                     },
                     "2l8HC": {
-                      "content": "Programming"
+                      "content": "Programming",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -2432,21 +3554,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "c5",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Tailwind CSS ドキュメント - ユーティリティファーストCSSフレームワーク"
+                      "content": "Tailwind CSS ドキュメント - ユーティリティファーストCSSフレームワーク",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-14"
+                      "content": "2025-02-14",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "ユーティリティクラスで素早くUIを構築。レスポンシブデザインやダークモード対応も簡単に実現できる。"
+                      "content": "ユーティリティクラスで素早くUIを構築。レスポンシブデザインやダークモード対応も簡単に実現できる。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "Design"
+                      "content": "Design",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -2456,21 +3644,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "c6",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Next.js App Router"
+                      "content": "Next.js App Router",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-12-10"
+                      "content": "2024-12-10",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "App Routerの基本概念とServer Componentsの活用方法。ルーティング、レイアウト、データフェッチを解説。"
+                      "content": "App Routerの基本概念とServer Componentsの活用方法。ルーティング、レイアウト、データフェッチを解説。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Framework"
+                      "content": "Framework",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -2525,6 +3779,8 @@
                     {
                       "type": "frame",
                       "id": "gONE8",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "width": 20,
@@ -2800,6 +4056,8 @@
                     {
                       "type": "frame",
                       "id": "tCRUU",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "rotation": -0.09980195371053763,
@@ -3035,7 +4293,7 @@
                   "id": "E9npm",
                   "name": "s3desc",
                   "fill": "$--muted-foreground",
-                  "content": "MiniSearchで絞り込み",
+                  "content": "URLのqueryパラメーター",
                   "fontFamily": "Geist",
                   "fontSize": 10,
                   "fontWeight": "normal"
@@ -3068,7 +4326,7 @@
                   "id": "qbaNE",
                   "name": "s4label",
                   "fill": "$--foreground",
-                  "content": "タグ編集",
+                  "content": "タグ検索",
                   "fontFamily": "JetBrains Mono",
                   "fontSize": 13,
                   "fontWeight": "700"
@@ -3078,7 +4336,7 @@
                   "id": "UwEnP",
                   "name": "s4desc",
                   "fill": "$--muted-foreground",
-                  "content": "Notion API更新",
+                  "content": "URLのtagパラメーター",
                   "fontFamily": "Geist",
                   "fontSize": 10,
                   "fontWeight": "normal"
@@ -4063,21 +5321,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "s1",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "React公式ドキュメント"
+                      "content": "React公式ドキュメント",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-01-15"
+                      "content": "2025-01-15",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Reactの基本概念からフックまで、公式チームによる包括的なドキュメント。初心者から上級者まで。"
+                      "content": "Reactの基本概念からフックまで、公式チームによる包括的なドキュメント。初心者から上級者まで。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Frontend"
+                      "content": "Frontend",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -4087,21 +5411,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "s2",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "MDN Web Docs"
+                      "content": "MDN Web Docs",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-11-03"
+                      "content": "2024-11-03",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptの仕様を網羅。"
+                      "content": "Web技術の包括的なリファレンス。HTML、CSS、JavaScriptの仕様を網羅。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "JavaScript"
+                      "content": "JavaScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -4111,21 +5501,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "s3",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Notion API リファレンス"
+                      "content": "Notion API リファレンス",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-03-01"
+                      "content": "2025-03-01",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Notion APIの公式ドキュメント。データベース操作やページ管理のエンドポイント解説。"
+                      "content": "Notion APIの公式ドキュメント。データベース操作やページ管理のエンドポイント解説。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "API"
+                      "content": "API",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 43
                     },
                     "2l8HC": {
-                      "content": "Notion"
+                      "content": "Notion",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -4180,6 +5636,8 @@
                     {
                       "type": "frame",
                       "id": "1ishD",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "width": 20,
@@ -4455,6 +5913,8 @@
                     {
                       "type": "frame",
                       "id": "EYlCM",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "rotation": -0.09980195371053763,
@@ -5299,6 +6759,8 @@
                     {
                       "type": "frame",
                       "id": "MagwI",
+                      "x": 0,
+                      "y": 0,
                       "name": "icon-16/x",
                       "enabled": false,
                       "clip": true,
@@ -5406,21 +6868,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "d1",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "TypeScript Handbook"
+                      "content": "TypeScript Handbook",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-08-22"
+                      "content": "2024-08-22",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "TypeScriptの型システムを基礎から学べる公式ハンドブック。実践的な例が豊富。"
+                      "content": "TypeScriptの型システムを基礎から学べる公式ハンドブック。実践的な例が豊富。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "TypeScript"
+                      "content": "TypeScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 86
                     },
                     "2l8HC": {
-                      "content": "Programming"
+                      "content": "Programming",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -5430,21 +6958,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "d2",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Tailwind CSS ドキュメント"
+                      "content": "Tailwind CSS ドキュメント",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-14"
+                      "content": "2025-02-14",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "ユーティリティファーストのCSSフレームワーク。クラス名の一覧とカスタマイズ方法。"
+                      "content": "ユーティリティファーストのCSSフレームワーク。クラス名の一覧とカスタマイズ方法。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "Design"
+                      "content": "Design",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -5454,21 +7048,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "d3",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Next.js App Router"
+                      "content": "Next.js App Router",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-12-10"
+                      "content": "2024-12-10",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Next.jsの新しいApp Routerの使い方。サーバーコンポーネントとルーティング。"
+                      "content": "Next.jsの新しいApp Routerの使い方。サーバーコンポーネントとルーティング。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Framework"
+                      "content": "Framework",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -5487,21 +7147,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "d4",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Svelte チュートリアル"
+                      "content": "Svelte チュートリアル",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-01-28"
+                      "content": "2025-01-28",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Svelteの基本からストア、アニメーションまで。インタラクティブな学習環境。"
+                      "content": "Svelteの基本からストア、アニメーションまで。インタラクティブな学習環境。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "Svelte"
+                      "content": "Svelte",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 60
                     },
                     "2l8HC": {
-                      "content": "Frontend"
+                      "content": "Frontend",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -5511,21 +7237,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "d5",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Vercel デプロイガイド"
+                      "content": "Vercel デプロイガイド",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-09-15"
+                      "content": "2024-09-15",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Vercelへのデプロイ方法とサーバーレス関数の設定ガイド。"
+                      "content": "Vercelへのデプロイ方法とサーバーレス関数の設定ガイド。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "DevOps"
+                      "content": "DevOps",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 70
                     },
                     "2l8HC": {
-                      "content": "Hosting"
+                      "content": "Hosting",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -5535,21 +7327,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "d6",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "GitHub Actions CI/CD"
+                      "content": "GitHub Actions CI/CD",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-05"
+                      "content": "2025-02-05",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "GitHub Actionsを使ったCI/CDパイプラインの構築。ワークフローの書き方。"
+                      "content": "GitHub Actionsを使ったCI/CDパイプラインの構築。ワークフローの書き方。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CI/CD"
+                      "content": "CI/CD",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 59
                     },
                     "2l8HC": {
-                      "content": "GitHub"
+                      "content": "GitHub",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -5606,6 +7464,8 @@
                     {
                       "type": "frame",
                       "id": "QVFZw",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "width": 20,
@@ -5881,6 +7741,8 @@
                     {
                       "type": "frame",
                       "id": "JQDau",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "rotation": -0.09980195371053763,
@@ -5944,7 +7806,67 @@
           "ref": "StbIv",
           "x": 410,
           "y": 380,
-          "name": "dialogRef"
+          "name": "dialogRef",
+          "height": "fit_content",
+          "descendants": {
+            "2W1At": {
+              "x": 210,
+              "y": 32
+            },
+            "KQMRq": {
+              "x": 104,
+              "y": 92
+            },
+            "MX6Jr": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 36,
+              "y": 138
+            },
+            "9Cond": {
+              "x": 16,
+              "y": 23
+            },
+            "oiSPY": {
+              "width": "fill_container",
+              "x": 40,
+              "y": 12
+            },
+            "8FRVD": {
+              "x": 145.5,
+              "y": 220
+            },
+            "OAZAD": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 36,
+              "y": 259
+            },
+            "RSiQz": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 74,
+              "y": 0
+            },
+            "RSiQz/k3Rmx": {
+              "x": 20,
+              "y": 10
+            },
+            "zv79P": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 196,
+              "y": 0
+            },
+            "zv79P/xTmTA": {
+              "x": 20,
+              "y": 12
+            },
+            "zv79P/k3Rmx": {
+              "x": 42,
+              "y": 10
+            }
+          }
         }
       ]
     },
@@ -6057,10 +7979,16 @@
               "type": "ref",
               "ref": "rWVzN",
               "name": "cancelButton",
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 74,
+              "y": 0,
               "descendants": {
                 "k3Rmx": {
                   "content": "キャンセル",
-                  "fontWeight": "500"
+                  "fontWeight": "500",
+                  "x": 20,
+                  "y": 10
                 }
               }
             },
@@ -6074,15 +8002,23 @@
                 "align": "inside",
                 "thickness": 0
               },
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 196,
+              "y": 0,
               "descendants": {
                 "xTmTA": {
                   "enabled": true,
                   "iconFontName": "trash-2",
-                  "fill": "#000000"
+                  "fill": "#000000",
+                  "x": 20,
+                  "y": 12
                 },
                 "k3Rmx": {
                   "content": "削除する",
-                  "fill": "#000000"
+                  "fill": "#000000",
+                  "x": 42,
+                  "y": 10
                 }
               }
             }
@@ -6117,6 +8053,8 @@
         {
           "type": "icon_font",
           "id": "xTmTA",
+          "x": 0,
+          "y": 0,
           "name": "btnIcon",
           "enabled": false,
           "width": 16,
@@ -6256,12 +8194,36 @@
       "name": "Toast - Success",
       "x": -656,
       "y": -2847,
+      "height": "fit_content",
       "descendants": {
+        "vJYwo": {
+          "x": 16,
+          "y": 17
+        },
+        "9dGX9": {
+          "x": 7,
+          "y": 7
+        },
+        "iDoAR": {
+          "width": "fill_container",
+          "height": "fit_content",
+          "x": 60,
+          "y": 14
+        },
         "rH9qE": {
           "content": "更新完了"
         },
         "1b4cj": {
-          "content": "ブックマークが最新の状態に更新されました"
+          "content": "ブックマークが最新の状態に更新されました",
+          "y": 21
+        },
+        "JJ8kp": {
+          "x": 316,
+          "y": 19
+        },
+        "aaVRI": {
+          "x": 6,
+          "y": 6
         }
       }
     },
@@ -6272,19 +8234,39 @@
       "name": "Toast - Loading",
       "x": -656,
       "y": -2742,
+      "height": "fit_content",
       "descendants": {
         "vJYwo": {
-          "fill": "$--color-info"
+          "fill": "$--color-info",
+          "x": 16,
+          "y": 17
         },
         "9dGX9": {
           "iconFontName": "loader",
-          "fill": "$--color-info-foreground"
+          "fill": "$--color-info-foreground",
+          "x": 7,
+          "y": 7
+        },
+        "iDoAR": {
+          "width": "fill_container",
+          "height": "fit_content",
+          "x": 60,
+          "y": 14
         },
         "rH9qE": {
           "content": "更新中..."
         },
         "1b4cj": {
-          "content": "ブックマークデータを取得しています"
+          "content": "ブックマークデータを取得しています",
+          "y": 21
+        },
+        "JJ8kp": {
+          "x": 316,
+          "y": 19
+        },
+        "aaVRI": {
+          "x": 6,
+          "y": 6
         }
       }
     },
@@ -6295,19 +8277,39 @@
       "name": "Toast - Error",
       "x": -656,
       "y": -2634,
+      "height": "fit_content",
       "descendants": {
         "vJYwo": {
-          "fill": "$--color-error"
+          "fill": "$--color-error",
+          "x": 16,
+          "y": 17
         },
         "9dGX9": {
           "iconFontName": "circle-x",
-          "fill": "$--color-error-foreground"
+          "fill": "$--color-error-foreground",
+          "x": 7,
+          "y": 7
+        },
+        "iDoAR": {
+          "width": "fill_container",
+          "height": "fit_content",
+          "x": 60,
+          "y": 14
         },
         "rH9qE": {
           "content": "更新失敗"
         },
         "1b4cj": {
-          "content": "ブックマークの更新中にエラーが発生しました"
+          "content": "ブックマークの更新中にエラーが発生しました",
+          "y": 21
+        },
+        "JJ8kp": {
+          "x": 316,
+          "y": 19
+        },
+        "aaVRI": {
+          "x": 6,
+          "y": 6
         }
       }
     },
@@ -6623,6 +8625,8 @@
                     {
                       "type": "frame",
                       "id": "fHkGr",
+                      "x": 0,
+                      "y": 0,
                       "name": "icon-16/x",
                       "enabled": false,
                       "clip": true,
@@ -6730,21 +8734,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "su1",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "TypeScript Handbook"
+                      "content": "TypeScript Handbook",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-08-22"
+                      "content": "2024-08-22",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "TypeScriptの型システムを基礎から学べる公式ハンドブック。実践的な例が豊富。"
+                      "content": "TypeScriptの型システムを基礎から学べる公式ハンドブック。実践的な例が豊富。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "TypeScript"
+                      "content": "TypeScript",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 86
                     },
                     "2l8HC": {
-                      "content": "Programming"
+                      "content": "Programming",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -6754,21 +8824,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "su2",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Tailwind CSS ドキュメント"
+                      "content": "Tailwind CSS ドキュメント",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-14"
+                      "content": "2025-02-14",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "ユーティリティファーストのCSSフレームワーク。クラス名の一覧とカスタマイズ方法。"
+                      "content": "ユーティリティファーストのCSSフレームワーク。クラス名の一覧とカスタマイズ方法。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CSS"
+                      "content": "CSS",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 48
                     },
                     "2l8HC": {
-                      "content": "Design"
+                      "content": "Design",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -6778,21 +8914,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "su3",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Next.js App Router"
+                      "content": "Next.js App Router",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-12-10"
+                      "content": "2024-12-10",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Next.jsの新しいApp Routerの使い方。サーバーコンポーネントとルーティング。"
+                      "content": "Next.jsの新しいApp Routerの使い方。サーバーコンポーネントとルーティング。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "React"
+                      "content": "React",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 57
                     },
                     "2l8HC": {
-                      "content": "Framework"
+                      "content": "Framework",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -6811,21 +9013,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "su4",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Svelte チュートリアル"
+                      "content": "Svelte チュートリアル",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-01-28"
+                      "content": "2025-01-28",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Svelteの基本からストア、アニメーションまで。インタラクティブな学習環境。"
+                      "content": "Svelteの基本からストア、アニメーションまで。インタラクティブな学習環境。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "Svelte"
+                      "content": "Svelte",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 60
                     },
                     "2l8HC": {
-                      "content": "Frontend"
+                      "content": "Frontend",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -6835,21 +9103,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "su5",
+                  "height": "fit_content",
+                  "x": 402.6666666666667,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "Vercel デプロイガイド"
+                      "content": "Vercel デプロイガイド",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2024-09-15"
+                      "content": "2024-09-15",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "Vercelへのデプロイ方法とサーバーレス関数の設定ガイド。"
+                      "content": "Vercelへのデプロイ方法とサーバーレス関数の設定ガイド。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "DevOps"
+                      "content": "DevOps",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 70
                     },
                     "2l8HC": {
-                      "content": "Hosting"
+                      "content": "Hosting",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 },
@@ -6859,21 +9193,87 @@
                   "ref": "1sFPz",
                   "width": "fill_container",
                   "name": "su6",
+                  "height": "fit_content",
+                  "x": 805.3333333333334,
+                  "y": 0,
                   "descendants": {
+                    "Jr6KY": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
+                    "11mwc": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "GBef9": {
-                      "content": "GitHub Actions CI/CD"
+                      "content": "GitHub Actions CI/CD",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 16
+                    },
+                    "XmGOh": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 74
                     },
                     "n2sRC": {
-                      "content": "2025-02-05"
+                      "content": "2025-02-05",
+                      "x": 24,
+                      "y": 8
+                    },
+                    "G1e7d": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 118
+                    },
+                    "K7zrK": {
+                      "width": "fill_container",
+                      "x": 24
+                    },
+                    "j1Oou": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 274
                     },
                     "vpFFe": {
-                      "content": "GitHub Actionsを使ったCI/CDパイプラインの構築。ワークフローの書き方。"
+                      "content": "GitHub Actionsを使ったCI/CDパイプラインの構築。ワークフローの書き方。",
+                      "width": "fill_container",
+                      "x": 24,
+                      "y": 12
+                    },
+                    "5Cysx": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 24,
+                      "y": 82
+                    },
+                    "7U8Ja": {
+                      "width": "fit_content",
+                      "height": "fit_content"
                     },
                     "aIhPz": {
-                      "content": "CI/CD"
+                      "content": "CI/CD",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "pK18I": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 59
                     },
                     "2l8HC": {
-                      "content": "GitHub"
+                      "content": "GitHub",
+                      "x": 8,
+                      "y": 8
+                    },
+                    "KksiJ": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 401
+                    },
+                    "Dg5T2": {
+                      "x": 332.6666666666667,
+                      "y": 12
                     }
                   }
                 }
@@ -6930,6 +9330,8 @@
                     {
                       "type": "frame",
                       "id": "r90iS",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "width": 20,
@@ -7205,6 +9607,8 @@
                     {
                       "type": "frame",
                       "id": "HpIa2",
+                      "x": 0,
+                      "y": 0,
                       "name": "plus",
                       "enabled": false,
                       "rotation": -0.09980195371053763,
@@ -7258,12 +9662,36 @@
           "name": "Toast Success",
           "x": 896,
           "y": 16,
+          "height": "fit_content",
           "descendants": {
+            "vJYwo": {
+              "x": 16,
+              "y": 17
+            },
+            "9dGX9": {
+              "x": 7,
+              "y": 7
+            },
+            "iDoAR": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 60,
+              "y": 14
+            },
             "rH9qE": {
               "content": "更新完了"
             },
             "1b4cj": {
-              "content": "ブックマークが最新の状態に更新されました"
+              "content": "ブックマークが最新の状態に更新されました",
+              "y": 21
+            },
+            "JJ8kp": {
+              "x": 316,
+              "y": 19
+            },
+            "aaVRI": {
+              "x": 6,
+              "y": 6
             }
           }
         }
