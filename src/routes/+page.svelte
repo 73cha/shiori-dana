@@ -37,12 +37,7 @@
   // ── Level 1 ────────────────────────────────────────────────────────────────
 
   const flags = $derived({
-    isInitializing:
-      !isError &&
-      !searchParamTag &&
-      !searchParamPage &&
-      !searchParamQuery &&
-      bookmarks.length === 0,
+    isInitializing: !isError && bookmarks.length === 0,
     isFilteringByTag: searchParamTag && !searchParamQuery,
     isFilteringByQuery: searchParamQuery && !searchParamTag,
     isFilteringByDefault: !searchParamTag && !searchParamQuery,
