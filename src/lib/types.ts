@@ -6,6 +6,7 @@ export interface Bookmark {
   img: AnyUrl
   tags: { id: string; tag: string }[]
   date: YYYYMMDD
+  published: boolean
 }
 
 export type BookmarksResponse = {

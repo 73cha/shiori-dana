@@ -11,11 +11,14 @@ const notion = new Client({ auth: NOTION_API_KEY })
 // `multi_select`と他で関数を分けたくないのでオーバーロードする
 // インターセクション型のオーバーロードは、
 // 呼出し側で`{ type: XXX }`が確定している必要がある
+function toText(prop: PageProperty & { type: 'checkbox' }): boolean
 function toText(prop: PageProperty & { type: 'multi_select' }): MultiSelect
 function toText(prop: PageProperty & { type: 'date' }): YYYYMMDD
 function toText(prop: PageProperty & { type: 'url' }): AnyUrl
 function toText(prop: PageProperty): string
-function toText(prop: PageProperty): string | AnyUrl | YYYYMMDD | MultiSelect {
+function toText(
+  prop: PageProperty,
+): string | boolean | AnyUrl | YYYYMMDD | MultiSelect {
   switch (prop.type) {
     case 'title':
       return prop.title.at(0)?.plain_text ?? ''
@@ -27,13 +30,23 @@ function toText(prop: PageProperty): string | AnyUrl | YYYYMMDD | MultiSelect {
       return prop.multi_select.map((v) => ({ id: v.id, tag: v.name }))
     case 'date':
       return prop.date?.start ?? '2000-01-01'
+    case 'checkbox':
+      return prop.checkbox ?? false
     default:
       return ''
   }
 }
 
 export async function archiveBookmark(pageId: string): Promise<void> {
-  await notion.pages.update({ page_id: pageId, archived: true })
+  await notion.pages.update({
+    page_id: pageId,
+    properties: {
+      published: {
+        type: 'checkbox',
+        checkbox: false,
+      },
+    },
+  })
 }
 
 export async function fetchAllBookmarks(): Promise<Bookmark[][]> {
@@ -56,8 +69,15 @@ export async function fetchAllBookmarks(): Promise<Bookmark[][]> {
 
     const paginated = response.results
       .filter(isFullPage)
+      .filter(({ properties }) => {
+        return (
+          properties.published.type === 'checkbox' &&
+          properties.published.checkbox
+        )
+      })
       .map(({ id, properties }) => {
-        const { title, url, img, description, tags, date } = properties
+        const { title, url, img, description, tags, date, published } =
+          properties
 
         return {
           id,
@@ -71,6 +91,7 @@ export async function fetchAllBookmarks(): Promise<Bookmark[][]> {
           tags:
             tags.type === 'multi_select' ? toText(tags) : [{ id: '', tag: '' }],
           date: date.type === 'date' ? toText(date) : '2000-01-01',
+          published: published.type === 'checkbox' ? toText(published) : false,
         }
       })
 
