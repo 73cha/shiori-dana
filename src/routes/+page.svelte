@@ -14,20 +14,6 @@
   const PER_PAGE = 16
   const PER_ITEM = 3
 
-  onMount(async () => {
-    const response = await fetch('/api/v1/bookmarks')
-
-    if (response.status !== 200) {
-      isError = true
-
-      return
-    }
-
-    const { bookmarks: _bookmarks }: BookmarksResponse = await response.json()
-
-    bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
-  })
-
   // ── URL params ─────────────────────────────────────────────────────────────
 
   const searchParamTag = $derived(page.url.searchParams.get('tag'))
@@ -116,14 +102,6 @@
 
   const hasNextPageNation = $derived(pageNationIndex < pageNationLength)
   const hasPrevPageNation = $derived(pageNationIndex > 0)
-
-  $effect(() => {
-    const index = pageNationItems.findIndex((item) =>
-      item.includes(validSearchParamPage),
-    )
-
-    pageNationIndex = index < 0 ? 0 : index
-  })
 
   // ── Functions ──────────────────────────────────────────────────────────────
 
