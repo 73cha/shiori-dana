@@ -235,9 +235,9 @@
           {#each bookmark.tags as tag (tag.id)}
             <li>
               <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-              <a onclick={resetPageNationIndex} href={`/?tag=${tag.tag}`}
-                >{tag.tag}</a
-              >
+              <a onclick={resetPageNationIndex} href={`/?tag=${tag.tag}`}>
+                {tag.tag}
+              </a>
             </li>
           {/each}
         </ul>
