@@ -290,14 +290,17 @@
   .AppHeader {
     display: block grid;
     align-items: center;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto 1fr;
   }
 
   .AppLogo {
   }
 
   .SearchBar {
-    grid-column: 3/4;
+  }
+
+  .UpdateButton {
+    justify-self: self-end;
   }
 
   .BookmarkList {
