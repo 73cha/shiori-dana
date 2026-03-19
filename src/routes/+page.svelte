@@ -10,6 +10,7 @@
   let bookmarks = $state<Bookmark[]>([])
   let pageNationIndex = $state(0)
   let isError = $state(false)
+  let isDeleteSuccess = $state(false)
 
   const PER_PAGE = 16
   const PER_ITEM = 3
@@ -179,6 +180,8 @@
   }
 
   const fetchBookmarks = async () => {
+    isError = false
+
     const response = await fetch('/api/v1/bookmarks')
 
     if (response.status !== 200) {
@@ -192,8 +195,38 @@
     bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
   }
 
+  const removeBookmark = async (id: string) => {
+    isError = false
+    isDeleteSuccess = false
+
+    const snapshot = $state.snapshot(bookmarks)
+
+    // MEMO:
+    // テンプレートからはすぐに取り除く
+    bookmarks = bookmarks.filter((bookmark) => {
+      return bookmark.id !== id
+    })
+
+    const response = await fetch(`/api/v1/bookmarks/${id}`, {
+      method: 'DELETE',
+    })
+
+    // MEMO:
+    // APIのアーカイブ処理が失敗したら、
+    // 失敗のメッセージと併せてスナップショットで差し戻す
+    if (response.status !== 200) {
+      isError = true
+      isDeleteSuccess = false
+
+      bookmarks = snapshot
+
+      return
+    }
+
+    isDeleteSuccess = true
+  }
+
   // MEMO:
-  // ライフサイクル、`effect`は最下流に置く
   // 上流に状態・下流に副作用
   onMount(() => {
     fetchBookmarks()
@@ -286,7 +319,11 @@
         </ul>
         <div class="BookmarkDelButton">
           <button
-            data-target-id={bookmark.id}
+            onclick={() => {
+              if (window.confirm('本当に削除しますか？')) {
+                removeBookmark(bookmark.id)
+              }
+            }}
             aria-label={`${bookmark.title}を削除する`}
           >
             🗑️
@@ -367,7 +404,6 @@
       100%,
       max(var(--_calculated-column-width), var(--_min-column-width))
     );
-
     display: block grid;
     gap: 1rlh var(--_column-gap);
     margin-block-start: 2rem;
