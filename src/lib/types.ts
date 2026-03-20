@@ -45,3 +45,11 @@ export type AnyUrl = HttpUrl | HttpsUrl
 export type AwaitedPromise<T extends (...args: any) => any> = Awaited<
   ReturnType<T>
 >
+
+export type Flags = Record<
+  | 'isInitializing'
+  | 'isFilteringByTag'
+  | 'isFilteringByQuery'
+  | 'isFilteringByDefault',
+  boolean
+>

@@ -1,16 +1,17 @@
 <script lang="ts">
-  import type { YYYYMMDD } from '$lib/types'
+  import type { Bookmark, BookmarksResponse, YYYYMMDD, Flags } from '$lib/types'
   import { page } from '$app/state'
-  import { pageTitle } from '$lib/utils/page-title'
-  import type { Bookmark, BookmarksResponse } from '$lib/types'
   import { onMount } from 'svelte'
   import { goto } from '$app/navigation'
+  import { pageTitle } from '$lib/utils/page-title'
   import { highLightKeyword } from '$lib/actions/hight-light-keyword'
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte'
+  import ErrorBoundary from '$lib/components/ErrorBoundary.svelte'
+  import MessageBoundary from '$lib/components/MessageBoundary.svelte'
 
   let bookmarks = $state<Bookmark[]>([])
   let pageNationIndex = $state(0)
   let isError = $state(false)
-  let isDeleteSuccess = $state(false)
 
   const PER_PAGE = 16
   const PER_ITEM = 3
@@ -23,10 +24,10 @@
 
   // ── Level 1 ────────────────────────────────────────────────────────────────
 
-  const flags = $derived({
+  const flags: Flags = $derived({
     isInitializing: !isError && bookmarks.length === 0,
-    isFilteringByTag: searchParamTag && !searchParamQuery,
-    isFilteringByQuery: searchParamQuery && !searchParamTag,
+    isFilteringByTag: !!(searchParamTag && !searchParamQuery),
+    isFilteringByQuery: !!(searchParamQuery && !searchParamTag),
     isFilteringByDefault: !searchParamTag && !searchParamQuery,
   })
 
@@ -197,7 +198,6 @@
 
   const removeBookmark = async (id: string) => {
     isError = false
-    isDeleteSuccess = false
 
     const snapshot = $state.snapshot(bookmarks)
 
@@ -216,14 +216,11 @@
     // 失敗のメッセージと併せてスナップショットで差し戻す
     if (response.status !== 200) {
       isError = true
-      isDeleteSuccess = false
 
       bookmarks = snapshot
 
       return
     }
-
-    isDeleteSuccess = true
   }
 
   // MEMO:
@@ -273,21 +270,16 @@
   </div>
 </header>
 
-{#if flags.isInitializing}
-  <p>データの取得中...</p>
-{/if}
+<LoadingBoundary isLoading={flags.isInitializing} />
 
-{#if bookmarksLength > 0 && flags.isFilteringByTag}
-  <p>タグ:{searchParamTag}は、{bookmarksLength}件です。</p>
-{/if}
+<MessageBoundary
+  flgs={flags}
+  len={bookmarksLength}
+  tag={searchParamTag ?? ''}
+  query={searchParamQuery ?? ''}
+/>
 
-{#if bookmarksLength > 0 && flags.isFilteringByQuery}
-  <p>{searchParamQuery}の検索結果は、{bookmarksLength}件です。</p>
-{/if}
-
-{#if isError}
-  データ取得中にエラーが発生しました。再度、読み込みをしてください。
-{/if}
+<ErrorBoundary {isError} />
 
 {#if bookmarksLength > 0}
   <div class="BookmarkList" use:highLightKeyword={searchParamQuery ?? ''}>
@@ -473,7 +465,7 @@
     & :where(a) {
       display: block grid;
       place-content: center;
-      border: solid 1px black;
+      border: solid 1px;
       aspect-ratio: 1;
     }
 
