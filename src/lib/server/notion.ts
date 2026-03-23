@@ -4,7 +4,7 @@ import type { Bookmark, AnyUrl, YYYYMMDD } from '$lib/types'
 
 type PageProperty =
   PageObjectResponse['properties'][keyof PageObjectResponse['properties']]
-type MultiSelect = { id: string; tag: string }[]
+type MultiSelect = { id: string; name: string }[]
 
 const notion = new Client({ auth: NOTION_API_KEY })
 // MEMO:
@@ -27,7 +27,7 @@ function toText(
     case 'url':
       return prop.url ?? 'https://example.com'
     case 'multi_select':
-      return prop.multi_select.map((v) => ({ id: v.id, tag: v.name }))
+      return prop.multi_select.map((v) => ({ id: v.id, name: v.name }))
     case 'date':
       return prop.date?.start ?? '2000-01-01'
     case 'checkbox':
@@ -44,6 +44,31 @@ export async function archiveBookmark(pageId: string): Promise<void> {
       published: {
         type: 'checkbox',
         checkbox: false,
+      },
+    },
+  })
+}
+
+/**
+ * SEE: ## `editBookmark` in docs/memo.md
+ * @see https://developers.notion.com/reference/patch-page
+ */
+export async function editBookmark(
+  pageId: string,
+  payload: { title: string; tags: { id?: string; name: string }[] },
+): Promise<void> {
+  await notion.pages.update({
+    page_id: pageId,
+    properties: {
+      title: {
+        title: [{ text: { content: payload.title } }],
+      },
+      tags: {
+        type: 'multi_select',
+        multi_select: payload.tags.map((tag) => {
+          delete tag.id
+          return { name: tag.name }
+        }),
       },
     },
   })
@@ -89,7 +114,9 @@ export async function fetchAllBookmarks(): Promise<Bookmark[][]> {
               : 'https://loremflickr.com/1200/630/cat',
           description: toText(description),
           tags:
-            tags.type === 'multi_select' ? toText(tags) : [{ id: '', tag: '' }],
+            tags.type === 'multi_select'
+              ? toText(tags)
+              : [{ id: '', name: '' }],
           date: date.type === 'date' ? toText(date) : '2000-01-01',
           published: published.type === 'checkbox' ? toText(published) : false,
         }

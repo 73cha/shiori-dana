@@ -1,17 +1,28 @@
 <script lang="ts">
-  import type { Bookmark, BookmarksResponse, YYYYMMDD, Flags } from '$lib/types'
+  import type { Bookmark, BookmarksResponse, Flags } from '$lib/types'
   import { page } from '$app/state'
-  import { onMount } from 'svelte'
+  import { onDestroy, onMount } from 'svelte'
   import { goto } from '$app/navigation'
-  import { pageTitle } from '$lib/utils/page-title'
+  import { utils } from '$lib/utils/index'
   import { highLightKeyword } from '$lib/actions/hight-light-keyword'
   import LoadingBoundary from '$lib/components/LoadingBoundary.svelte'
   import ErrorBoundary from '$lib/components/ErrorBoundary.svelte'
   import MessageBoundary from '$lib/components/MessageBoundary.svelte'
 
-  let bookmarks = $state<Bookmark[]>([])
+  // MEMO:
+  // 正規化ステートなので、絶対に再代入や`bind`しない
+  let normalizedBookmarks = $state<Bookmark[]>([])
+
+  // MEMO:
+  // こちらは破壊的に操作しても問題ない
+  // 基本的にこちらを操作する
+  let editableBookmarks = $state<Bookmark[]>([])
+
   let pageNationIndex = $state(0)
   let isError = $state(false)
+  const listeners = $state<
+    { el: HTMLElement; fn: (event: MouseEvent) => void }[]
+  >([])
 
   const PER_PAGE = 16
   const PER_ITEM = 3
@@ -25,19 +36,15 @@
   // ── Level 1 ────────────────────────────────────────────────────────────────
 
   const flags: Flags = $derived({
-    isInitializing: !isError && bookmarks.length === 0,
+    isInitializing: !isError && editableBookmarks.length === 0,
     isFilteringByTag: !!(searchParamTag && !searchParamQuery),
     isFilteringByQuery: !!(searchParamQuery && !searchParamTag),
     isFilteringByDefault: !searchParamTag && !searchParamQuery,
   })
 
-  // MEMO:
-  // ここでスライスはしない
-  // フィルターしたデータを返すだけ
-  // ページネーションのアイテム数が正しく反映されないため
-  // テンプレートでスライスする
+  // SEE: ## `filterdBokkmarks` in docs/memo.md
   const filteredBookmarks = $derived.by(() => {
-    return bookmarks.filter((bookmark) => {
+    return editableBookmarks.filter((bookmark) => {
       // 検索欄での検索
       if (
         flags.isFilteringByQuery &&
@@ -45,7 +52,7 @@
         (bookmark.title.includes(searchParamQuery) ||
           bookmark.description.includes(searchParamQuery) ||
           bookmark.tags.some((tag) =>
-            tag.tag.toLowerCase().includes(searchParamQuery.toLowerCase()),
+            tag.name.toLowerCase().includes(searchParamQuery.toLowerCase()),
           ))
       ) {
         return bookmark
@@ -53,7 +60,7 @@
 
       // タグでの取得
       if (flags.isFilteringByTag) {
-        return bookmark.tags.some((tag) => tag.tag === searchParamTag)
+        return bookmark.tags.some((tag) => tag.name === searchParamTag)
       }
 
       // 通常の取得
@@ -110,43 +117,9 @@
   const incrementPageNationIndex = () => (pageNationIndex += 1)
   const decrementPageNationIndex = () => (pageNationIndex -= 1)
 
-  // MEMO:
-  // タグをクリックしたときは、
-  // ページネーションのインデックスをリセットする
-  // ページネーションが複数ページある場合と1ページしかない場合、
-  // インデックスがリセットされないと、1ページの時に存在しない
-  // インデックスを参照してしまうため
-  //
-  // ページネーションが3ページ
-  // const data1 = [[1, 2, 3], [4, 5, 6], [7]]
-  //
-  // ページネーションが1ページ
-  // const data2 = [[1]]
-  //
-  // ページネーションが3ページの時、data1[2]まで操作した状態で、
-  // タグをクリックすると、インデックスはリセットされていないため、
-  // 1ページの時に存在しないインデックスで参照されてしまう
-  //
-  // 1ページ: インデックスは`0`だけ
-  // 3ページ: 3ページ目まで送ると、インデックスは`2`になる
-  //
-  // リセットしないと、data2[2]になって存在しない
+  // SEE: ## ページネーション in docs/memo.md
   const resetPageNationIndex = () => (pageNationIndex = 0)
-
   const isCurrentPage = (pageNum: number) => pageNum === validSearchParamPage
-  const toLocaleDate = (
-    dateString: YYYYMMDD,
-  ): `${string}年${string}月${string}日` | undefined => {
-    const datePattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/
-
-    if (!datePattern.test(dateString)) {
-      return
-    }
-
-    const [year, month, date] = dateString.split('-')
-
-    return `${year}年${month}月${date}日`
-  }
 
   const searchParamBuilder = (pageNumber: number) => {
     // eslint-disable-next-line svelte/prefer-svelte-reactivity
@@ -191,19 +164,22 @@
       return
     }
 
-    const { bookmarks: _bookmarks }: BookmarksResponse = await response.json()
+    const { bookmarks }: BookmarksResponse = await response.json()
 
-    bookmarks = _bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
+    const data = bookmarks.flat().sort((a, b) => b.date.localeCompare(a.date))
+
+    normalizedBookmarks = data
+    editableBookmarks = data
   }
 
   const removeBookmark = async (id: string) => {
     isError = false
 
-    const snapshot = $state.snapshot(bookmarks)
+    const snapshot = $state.snapshot(editableBookmarks)
 
     // MEMO:
     // テンプレートからはすぐに取り除く
-    bookmarks = bookmarks.filter((bookmark) => {
+    editableBookmarks = editableBookmarks.filter((bookmark) => {
       return bookmark.id !== id
     })
 
@@ -211,41 +187,116 @@
       method: 'DELETE',
     })
 
-    // MEMO:
-    // APIのアーカイブ処理が失敗したら、
-    // 失敗のメッセージと併せてスナップショットで差し戻す
     if (response.status !== 200) {
       isError = true
 
-      bookmarks = snapshot
+      editableBookmarks = snapshot
 
       return
     }
   }
 
-  // MEMO:
-  // 上流に状態・下流に副作用
-  onMount(() => {
-    fetchBookmarks()
-  })
+  const reInitializingBookmarks = async () => {
+    normalizedBookmarks.length = 0
+    editableBookmarks.length = 0
+
+    await fetchBookmarks()
+  }
+
+  const saveBookmark = async (
+    id: string,
+    title: string,
+    tags: { id: string; name: string }[],
+  ) => {
+    isError = false
+
+    const snapshot = $state.snapshot(editableBookmarks)
+
+    const response = await fetch(`/api/v1/bookmarks/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title: title,
+        tags: tags,
+      }),
+    })
+
+    if (response.status !== 200) {
+      isError = true
+
+      editableBookmarks = snapshot
+
+      return
+    }
+
+    await reInitializingBookmarks()
+  }
 
   // MEMO:
-  // `page`パラメーターがある状態で、リロードされた時の対策
-  // ページネーション自体のページ送りを、パラメーターから再算出する
-  // `findIndex`で`page`パラメータの値を含む配列を探す
-  // 見つかった個所の`index`を返すので、`pageNationIndex`に再代入する
+  // 上流に状態・下流に副作用
+  onMount(async () => {
+    await fetchBookmarks()
+
+    // SEE: ## `bookmarkList` in docs/memo.md
+    const bookmarkList = document.querySelector<HTMLElement>('.BookmarkList')
+
+    if (!bookmarkList) {
+      return
+    }
+
+    const toggleDialog = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      const id = target.dataset.targetDialog ?? ''
+      const dialog = document.getElementById(id)
+      const isDialog = (element: HTMLElement | null) =>
+        element instanceof HTMLDialogElement
+
+      // MEMO:
+      // dissmiss
+      // `target`が`dialog`の場合は、`::backdrop`をクリックしても閉じる
+      if (isDialog(target)) {
+        target.close()
+      }
+
+      // MEMO:
+      // `target`が`dialog`の場合は、
+      // `data-target-dialog`属性が無い
+      // 開閉ボタンにしか`data-target-dialog`属性は与えていない
+      // `id`が取得できないので、`didalog = null`になる
+      if (!isDialog(dialog)) {
+        return
+      }
+
+      if (dialog.open) {
+        dialog.close()
+      } else {
+        dialog.showModal()
+      }
+    }
+
+    listeners.push({ el: bookmarkList, fn: toggleDialog })
+    bookmarkList.addEventListener('click', toggleDialog)
+  })
+
+  onDestroy(() => {
+    listeners.forEach(({ el, fn }) => {
+      el.removeEventListener('click', fn)
+    })
+
+    listeners.length = 0
+  })
+
+  // SEE: ## `$effect`の`pageNationIndex` in docs/memo.md
   $effect(() => {
     const index = pageNationItems.findIndex((item) =>
       item.includes(validSearchParamPage),
     )
-
     pageNationIndex = index < 0 ? 0 : index
   })
 </script>
 
 <svelte:head>
   <meta />
-  <title>{pageTitle()}</title>
+  <title>{utils.pageTitle()}</title>
   <meta name="description" content="個人的なブックマーク管理アプリ 栞棚" />
   <meta name="color-scheme" content="light dark" />
 </svelte:head>
@@ -253,7 +304,7 @@
 <header class="AppHeader">
   <h1 class="AppLogo">
     <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-    <a href="/">{pageTitle()}</a>
+    <a href="/">{utils.pageTitle()}</a>
   </h1>
 
   <div class="SearchBar">
@@ -263,7 +314,7 @@
   <div class="UpdateButton">
     <button
       onclick={() => {
-        bookmarks = []
+        normalizedBookmarks = []
         fetchBookmarks()
       }}>更新</button
     >
@@ -281,84 +332,184 @@
 
 <ErrorBoundary {isError} />
 
-{#if bookmarksLength > 0}
-  <div class="BookmarkList" use:highLightKeyword={searchParamQuery ?? ''}>
-    {#each filteredBookmarks.slice(start, end) as bookmark (bookmark.id)}
-      <article class="Bookmark">
-        <div class="BookmarkImgWrap">
-          <a href={bookmark.url} rel="external noopener" target="_blank">
-            <img class="BookmarkImg" src={bookmark.img} alt={bookmark.title} />
-          </a>
-        </div>
-        <h2 class="BookmarkTitle" id={`bookmark-${bookmark.id}`}>
-          <a href={bookmark.url} rel="external noopener" target="_blank">
-            {bookmark.title}
-          </a>
-        </h2>
-        <time class="BookmarkDate" datetime={bookmark.date}>
-          {toLocaleDate(bookmark.date)}
-        </time>
-        <p class="BookmarkDescription">{bookmark.description}</p>
-        <ul class="BookmarkTags">
-          {#each bookmark.tags as tag (tag.id)}
-            <li>
-              <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-              <a onclick={resetPageNationIndex} href={`/?tag=${tag.tag}`}>
-                {tag.tag}
-              </a>
-            </li>
-          {/each}
-        </ul>
-        <div class="BookmarkDelButton">
+<div class="BookmarkList" use:highLightKeyword={searchParamQuery ?? ''}>
+  {#if bookmarksLength > 0}
+    <div class="BookmarkListLayout">
+      {#each filteredBookmarks.slice(start, end) as bookmark (bookmark.id)}
+        <article class="Bookmark">
+          <div class="BookmarkImgWrap">
+            <a href={bookmark.url} rel="external noopener" target="_blank">
+              <img
+                class="BookmarkImg"
+                src={bookmark.img}
+                alt={bookmark.title}
+              />
+            </a>
+          </div>
+          <h2 class="BookmarkTitle" id={`bookmark-${bookmark.id}`}>
+            <a href={bookmark.url} rel="external noopener" target="_blank">
+              {bookmark.title}
+            </a>
+          </h2>
+          <time class="BookmarkDate" datetime={bookmark.date}>
+            {utils.toJapaneseDate(bookmark.date)}
+          </time>
+          <p class="BookmarkDescription">{bookmark.description}</p>
+          <ul class="BookmarkTags">
+            {#each bookmark.tags as tag (tag.id)}
+              <li>
+                <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+                <a onclick={resetPageNationIndex} href={`/?tag=${tag.name}`}>
+                  {tag.name}
+                </a>
+              </li>
+            {/each}
+          </ul>
+          <div class="BookmarkButtonsLayout">
+            <div class="BookmarkDelButton">
+              <button
+                onclick={() => {
+                  if (window.confirm('本当に削除しますか？')) {
+                    removeBookmark(bookmark.id)
+                  }
+                }}
+                aria-label={`${bookmark.title}を削除する`}
+              >
+                🗑️
+              </button>
+            </div>
+            <div class="BookmarkEditButton">
+              <button
+                data-target-dialog={`dialog-${bookmark.id}`}
+                aria-label={`${bookmark.title}を編集する`}
+              >
+                ✏️
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <dialog id={`dialog-${bookmark.id}`} autofocus>
+          <h2>{bookmark.title}を編集</h2>
+
+          <div>
+            <label>
+              <input type="text" bind:value={bookmark.title} />
+            </label>
+          </div>
+
+          <div>
+            <ul>
+              {#each bookmark.tags as tag (tag.id)}
+                <li>
+                  <label>
+                    <input type="text" bind:value={tag.name} />
+                  </label>
+                  <button
+                    aria-label={`${tag.name}を削除`}
+                    onclick={() => {
+                      // MEMO: TODO:
+                      // タグの削除でパラメータのtagにマッチしなくなると、
+                      // 再レンダリングが走ってフィルターから除外される
+                      // 一覧から消える
+                      // タグの追加は、存在しないタグを追加するので、
+                      // 再レンダリングは走らない
+                      // isDeletingTagのようなフラグで、
+                      // ブックマークの再レンダリングを抑制する必要がある
+                      // 編集後に再レンダリングを走らせる?
+                      // 必要がないかも？再レンダリングさせると、
+                      // マッチしなければ消えるから
+                      bookmark.tags = [
+                        ...bookmark.tags.filter((_tag) => _tag.id !== tag.id),
+                      ]
+                    }}>-</button
+                  >
+                </li>
+              {/each}
+            </ul>
+            <button
+              aria-label="新しいタグを追加"
+              onclick={() => {
+                // MEMO:
+                // 追加のタグのidは、クライアントで組み立てていいのか謎
+                // cryptを使ってuidを生成しているが、
+                // Notionで弾かれないか分からない
+                // タグの削除で必要なので、一時的には必須
+                const uid = crypto.randomUUID()
+                bookmark.tags = [...bookmark.tags, { id: uid, name: 'hoge' }]
+              }}>+</button
+            >
+          </div>
+
           <button
             onclick={() => {
-              if (window.confirm('本当に削除しますか？')) {
-                removeBookmark(bookmark.id)
-              }
-            }}
-            aria-label={`${bookmark.title}を削除する`}
-          >
-            🗑️
-          </button>
-        </div>
-      </article>
-    {/each}
-  </div>
+              const _bookmark = normalizedBookmarks.find((__bookmark) => {
+                return __bookmark.id === bookmark.id
+              })
 
-  <nav aria-label="ページネーション">
-    <ol class="PageNation">
-      <li>
-        <button
-          onclick={decrementPageNationIndex}
-          disabled={!hasPrevPageNation}
-        >
-          前
-        </button>
-      </li>
-      <!-- eslint-disable-next-line svelte/require-each-key -->
-      {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
+              if (!_bookmark) {
+                return
+              }
+
+              bookmark.title = _bookmark.title
+              bookmark.tags = [..._bookmark.tags]
+            }}
+          >
+            変更を戻す
+          </button>
+          <button
+            onclick={() => {
+              saveBookmark(bookmark.id, bookmark.title, bookmark.tags)
+            }}
+          >
+            保存する
+          </button>
+          <button data-target-dialog={`dialog-${bookmark.id}`}>閉じる</button>
+        </dialog>
+      {/each}
+    </div>
+
+    <nav aria-label="ページネーション">
+      <ol class="PageNation">
         <li>
-          <!-- eslint-disable-next-line svelte/no-navigation-without-resolve --><!-- prettier-ignore -->
-          <a href={searchParamBuilder(pageNationItem)}
+          <button
+            onclick={decrementPageNationIndex}
+            disabled={!hasPrevPageNation}
+          >
+            前
+          </button>
+        </li>
+        <!-- eslint-disable-next-line svelte/require-each-key -->
+        {#each pageNationItems.at(pageNationIndex) ?? [] as pageNationItem}
+          <li>
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve --><!-- prettier-ignore -->
+            <a href={searchParamBuilder(pageNationItem)}
           aria-current={isCurrentPage(pageNationItem) ? 'page' : null}
         >
           {pageNationItem}
         </a>
+          </li>
+        {/each}
+        <li>
+          <button
+            onclick={incrementPageNationIndex}
+            disabled={!hasNextPageNation}
+          >
+            次
+          </button>
         </li>
-      {/each}
-      <li>
-        <button
-          onclick={incrementPageNationIndex}
-          disabled={!hasNextPageNation}
-        >
-          次
-        </button>
-      </li>
-    </ol>
-  </nav>
-{/if}
+      </ol>
+    </nav>
+  {/if}
+</div>
 
 <style>
+  dialog {
+    padding: 1rem;
+    border: solid 1px;
+    max-inline-size: 960px;
+  }
+
   .AppHeader {
     display: block grid;
     align-items: center;
@@ -377,6 +528,13 @@
 
   .BookmarkList {
     --_inline-size: 1400px;
+    margin-block-start: 2rem;
+    margin-inline: auto;
+    max-inline-size: var(--_inline-size);
+    contain: content;
+  }
+
+  .BookmarkListLayout {
     --_column-gap: 1.5rem;
     --_min-column-width: 20rem;
     /* 包含ブロックが十分なサイズなら、最大４つのカラムが並ぶ */
@@ -398,11 +556,7 @@
     );
     display: block grid;
     gap: 1rlh var(--_column-gap);
-    margin-block-start: 2rem;
-    margin-inline: auto;
-    max-inline-size: var(--_inline-size);
     grid-template-columns: repeat(auto-fill, minmax(var(--_column-width), 1fr));
-    contain: content;
   }
 
   .Bookmark {
@@ -437,7 +591,26 @@
   .BookmarkTags {
   }
 
-  .BookmarkDelButton {
+  .BookmarkButtonsLayout {
+    display: block flex;
+    justify-content: flex-end;
+    column-gap: 0.5em;
+    border: solid 1px;
+    padding: 0.5em;
+
+    & :where(button) {
+      border-width: 0;
+      display: block grid;
+      aspect-ratio: 1;
+      place-content: center;
+      border: solid 1px;
+    }
+  }
+
+  :where(:is(.BookmarkEditButton, .BookmarkDelButton)) {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(40 * calc(tan(atan2(1px, 16px))) * 1rem);
   }
 
   .PageNation {

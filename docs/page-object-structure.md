@@ -41,7 +41,16 @@
     type: 'url',
     url: 'https://xxxxxxxxxx'
   },
-  title: { id: 'title', type: 'title', title: [ [Object] ] }
+  title: { id: 'title', type: 'title', title: [ [Object] ] },
+  date: {
+    type: date
+    start: "2020-12-08T12:00:00Z"(ISO 8601),
+    end: "2020-12-08T12:00:00Z"(ISO 8601)
+  },
+  published: {
+    type: checkbox,
+    checkbox: false
+  }
 }
 ```
 
@@ -52,7 +61,7 @@ response.results.at(0).properties.description.rich_text.at(0).plain_text
 
 #### url(type: url)
 ```js
-response.results.at(0).properties.url.url)
+response.results.at(0).properties.url.url
 ```
 
 ### tags(type: multi_select)
@@ -69,4 +78,14 @@ response.results.at(0).properties.img.url
 #### title(type: title)
 ```js
 response.results.at(0).properties.title.title.at(0).plain_text
+```
+
+#### published(type: checkbox)
+```js
+response.results.at(0).properties.checkbox
+```
+
+#### published(type: date)
+```js
+response.results.at(0).properties.date.start
 ```
