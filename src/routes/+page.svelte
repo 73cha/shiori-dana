@@ -17,6 +17,7 @@
 
   let pageNationIndex = $state(0)
   let isError = $state(false)
+  let isProcessing = $state(false)
   const listeners = $state<
     { el: HTMLElement; fn: (event: MouseEvent) => void }[]
   >([])
@@ -170,6 +171,12 @@
   }
 
   const removeBookmark = async (id: string) => {
+    if (isProcessing) {
+      return
+    }
+
+    isProcessing = true
+
     isError = false
 
     const snapshot = $state.snapshot(editableBookmarks)
@@ -189,8 +196,12 @@
 
       editableBookmarks = snapshot
 
+      isProcessing = false
+
       return
     }
+
+    isProcessing = false
   }
 
   const reInitializingBookmarks = async () => {
@@ -205,6 +216,12 @@
     title: string,
     tags: { id: string; name: string }[],
   ) => {
+    if (isProcessing) {
+      return
+    }
+
+    isProcessing = true
+
     isError = false
 
     const snapshot = $state.snapshot(editableBookmarks)
@@ -222,10 +239,14 @@
 
       editableBookmarks = snapshot
 
+      isProcessing = false
+
       return
     }
 
     await reInitializingBookmarks()
+
+    isProcessing = false
   }
 
   // MEMO:
@@ -304,8 +325,15 @@
   <div class="UpdateButton">
     <button
       onclick={() => {
-        normalizedBookmarks = []
-        fetchBookmarks()
+        if (isProcessing) {
+          return
+        }
+
+        isProcessing = true
+
+        reInitializingBookmarks()
+
+        isProcessing = false
       }}>更新</button
     >
   </div>
@@ -407,6 +435,8 @@
                       bookmark.tags = [
                         ...bookmark.tags.filter((_tag) => _tag.id !== tag.id),
                       ]
+
+                      isProcessing = false
                     }}>-</button
                   >
                 </li>
@@ -424,12 +454,20 @@
                 // SEE: ## 投稿のタグID in docs/memo.md
                 const uid = crypto.randomUUID()
                 bookmark.tags = [...bookmark.tags, { id: uid, name: 'hoge' }]
+
+                isProcessing = false
               }}>+</button
             >
           </div>
 
           <button
             onclick={() => {
+              if (isProcessing) {
+                return
+              }
+
+              isProcessing = true
+
               const _bookmark = normalizedBookmarks.find((__bookmark) => {
                 return __bookmark.id === bookmark.id
               })
@@ -440,6 +478,8 @@
 
               bookmark.title = _bookmark.title
               bookmark.tags = [..._bookmark.tags]
+
+              isProcessing = false
             }}
           >
             変更を戻す
