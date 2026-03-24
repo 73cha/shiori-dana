@@ -4,9 +4,14 @@ export interface Bookmark {
   url: AnyUrl
   description: string
   img: AnyUrl
-  tags: { id: string; name: string }[]
+  tags: BookmarkTag[]
   date: YYYYMMDD
   published: boolean
+}
+
+export type BookmarkTag = {
+  id: string
+  name: string
 }
 
 export type BookmarksResponse = {
