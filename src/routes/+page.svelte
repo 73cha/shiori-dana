@@ -42,7 +42,7 @@
 
   // SEE: ## `filterdBokkmarks` in docs/memo.md
   const filteredBookmarks = $derived.by(() => {
-    const filterd = editableBookmarks.filter((bookmark) => {
+    return editableBookmarks.filter((bookmark) => {
       // 検索欄での検索
       if (
         flags.isFilteringByQuery &&
@@ -66,8 +66,6 @@
         return bookmark
       }
     })
-
-    return filterd
   })
 
   // ── Level 2 ────────────────────────────────────────────────────────────────
