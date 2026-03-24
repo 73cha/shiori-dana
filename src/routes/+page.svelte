@@ -9,13 +9,10 @@
   import ErrorBoundary from '$lib/components/ErrorBoundary.svelte'
   import MessageBoundary from '$lib/components/MessageBoundary.svelte'
 
-  // MEMO:
-  // 正規化ステートなので、絶対に再代入や`bind`しない
+  // SEE: ## `normalizedBookmarks` in docs/memo.md
   let normalizedBookmarks = $state<Bookmark[]>([])
 
-  // MEMO:
-  // こちらは破壊的に操作しても問題ない
-  // 基本的にこちらを操作する
+  // SEE ## `editableBookmarks` in docs/memo.md
   let editableBookmarks = $state<Bookmark[]>([])
 
   let pageNationIndex = $state(0)
@@ -243,6 +240,7 @@
       return
     }
 
+    // SEE: ## `toggleDialog` in docs/memo.md
     const toggleDialog = (event: MouseEvent) => {
       const target = event.target as HTMLElement
       const id = target.dataset.targetDialog ?? ''
@@ -250,18 +248,10 @@
       const isDialog = (element: HTMLElement | null) =>
         element instanceof HTMLDialogElement
 
-      // MEMO:
-      // dissmiss
-      // `target`が`dialog`の場合は、`::backdrop`をクリックしても閉じる
       if (isDialog(target)) {
         target.close()
       }
 
-      // MEMO:
-      // `target`が`dialog`の場合は、
-      // `data-target-dialog`属性が無い
-      // 開閉ボタンにしか`data-target-dialog`属性は与えていない
-      // `id`が取得できないので、`didalog = null`になる
       if (!isDialog(dialog)) {
         return
       }
@@ -408,17 +398,12 @@
                   <button
                     aria-label={`${tag.name}を削除`}
                     onclick={() => {
-                      // MEMO: TODO:
-                      // タグの削除でパラメータのtagにマッチしなくなると、
-                      // 再レンダリングが走ってフィルターから除外される
-                      // 一覧から消える
-                      // タグの追加は、存在しないタグを追加するので、
-                      // 再レンダリングは走らない
-                      // isDeletingTagのようなフラグで、
-                      // ブックマークの再レンダリングを抑制する必要がある
-                      // 編集後に再レンダリングを走らせる?
-                      // 必要がないかも？再レンダリングさせると、
-                      // マッチしなければ消えるから
+                      if (isProcessing) {
+                        return
+                      }
+
+                      isProcessing = true
+
                       bookmark.tags = [
                         ...bookmark.tags.filter((_tag) => _tag.id !== tag.id),
                       ]
@@ -430,11 +415,13 @@
             <button
               aria-label="新しいタグを追加"
               onclick={() => {
-                // MEMO:
-                // 追加のタグのidは、クライアントで組み立てていいのか謎
-                // cryptを使ってuidを生成しているが、
-                // Notionで弾かれないか分からない
-                // タグの削除で必要なので、一時的には必須
+                if (isProcessing) {
+                  return
+                }
+
+                isProcessing = true
+
+                // SEE: ## 投稿のタグID in docs/memo.md
                 const uid = crypto.randomUUID()
                 bookmark.tags = [...bookmark.tags, { id: uid, name: 'hoge' }]
               }}>+</button
