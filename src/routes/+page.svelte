@@ -42,7 +42,7 @@
 
   // SEE: ## `filterdBokkmarks` in docs/memo.md
   const filteredBookmarks = $derived.by(() => {
-    return editableBookmarks.filter((bookmark) => {
+    const filterd = editableBookmarks.filter((bookmark) => {
       // 検索欄での検索
       if (
         flags.isFilteringByQuery &&
@@ -66,6 +66,8 @@
         return bookmark
       }
     })
+
+    return filterd
   })
 
   // ── Level 2 ────────────────────────────────────────────────────────────────
@@ -426,6 +428,15 @@
                   <button
                     aria-label={`${tag.name}を削除`}
                     onclick={() => {
+<<<<<<< HEAD
+=======
+                      // MEMO:
+                      // タグの削除でパラメータのtagにマッチしなくなると、
+                      // 再レンダリングが走ってフィルターから除外される
+                      // 一覧から消える
+                      // タグの追加は、存在しないタグを追加するので、
+                      // 再レンダリングは走らない
+>>>>>>> 74237b4cdbe47d15d6b4c3363b42941863d2d22a
                       if (isProcessing) {
                         return
                       }
