@@ -1,6 +1,14 @@
 # MEMO:
 後で読み返すための実装メモ
 
+## `normalizedBookmarks`
+正規化ステートなので、絶対に再代入や`bind`しない  
+再フェッチでの再代入は可
+
+## `editableBookmarks`
+基本的にこちらを操作する  
+こちらは破壊的に操作しても問題ない
+
 ## `filterdBookmark`
 ここでスライスはしない  
 フィルターしたデータを返すだけ  
@@ -28,8 +36,8 @@ const data1 = [[1, 2, 3], [4, 5, 6], [7]]
 const data2 = [[1]]
 ```
 
-ページネーションが3ページの時、`data1[2]`まで操作した状態で、
-タグをクリックすると、インデックスはリセットされていないため、
+ページネーションが3ページの時、`data1[2]`まで操作した状態で、  
+タグをクリックすると、インデックスはリセットされていないため、  
 1ページの時に存在しないインデックスで参照されてしまう
 
 1ページ: インデックスは`0`だけ  
@@ -56,3 +64,30 @@ const resetPageNationIndex = () => (pageNationIndex = 0)
 フロントエンドでは、idが必須なので独自に生成している  
 タグの削除に必要、無くなると`dupulicate key ....`のようなエラーが出る  
 恐らくリストレンダリングの`key`関係だと思われる
+
+## 投稿のタグID
+クライアントで独自に生成したIDはNotionで弾かれる  
+IDはNotion管理
+
+ただし、フロントエンドではタグの削除に必要なため、  
+一時的には必須
+
+サーバー側でタグを削除してリクエストを送る
+
+## `toggleDialog`
+DISSMISSの実装  
+`target`が`dialog`の場合は、`::backdrop`をクリックしても閉じる
+```js
+if (isDialog(target)) {
+  target.close()
+}
+```
+
+`target`が`dialog`の場合は、`data-target-dialog`属性が無い  
+開閉ボタンにしか`data-target-dialog`属性は与えていない  
+`id`が取得できないので、`didalog = null`になる
+```js
+if (!isDialog(dialog)) {
+  return
+}
+```
