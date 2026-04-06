@@ -1,0 +1,23 @@
+@scope (.searchbar) to (.scope) {
+  & ._layout {
+    --_icon-size: calc(48 / 16 * 1em);
+
+    display: block grid;
+    grid-template-columns: var(--_icon-size) 1fr;
+    border: solid 1px var(--color-muted);
+  }
+
+  & ._label::before {
+    display: block;
+    aspect-ratio: 1;
+    content: '';
+    background-color: currentcolor;
+    mask: var(--icon-search) no-repeat center / 1.5em;
+  }
+
+  & ._input {
+    padding-inline: 0.25em;
+    background-color: transparent;
+    border-color: transparent;
+  }
+}

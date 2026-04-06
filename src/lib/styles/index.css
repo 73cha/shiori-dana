@@ -1,0 +1,17 @@
+/**
+  * MEMO:
+  * layoutのstyleにレイヤーの順序を書くこと
+  * importの解決に不具合があるため
+  * styleタグはViteのHMRの管轄外のようなので、
+  * リロードしても常に最初に評価される
+  */
+@import url('./kiso.css') layer(reset);
+@import url('./base.css') layer(base);
+@import url('./layouts.css') layer(layouts);
+@import url('./components/app-header.css') layer(components.appheader);
+@import url('./components/app-footer.css') layer(components.appfooter);
+@import url('./components/searchbar.css') layer(components.searchbar);
+@import url('./components/pagenation.css') layer(components.pagenation);
+@import url('./components/button.css') layer(components.button);
+@import url('./components/card.css') layer(components.card);
+@import url('./utilities.css') layer(utilities);

@@ -1,0 +1,82 @@
+.-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+.-fluid-text {
+  --_u-min-width: var(--fluid-text--min-width, 375);
+  --_u-max-width: var(--fluid-text--max-width, 1400);
+  --_u-min-font-size: var(--fluid-text--min-font-size, 14);
+  --_u-max-font-size: var(--fluid-text--max-font-size, 16);
+  --_u-base-font-size: var(--fluid-text--base-font-size, 16);
+  --_u-relative-unit: var(
+    --fluid-text--relative-unit,
+    100svi
+  ); /* 100svi or 100cqi */
+
+  --_u-slope: calc(
+    (var(--_u-max-font-size) - var(--_u-min-font-size)) /
+      (var(--_u-max-width) - var(--_u-min-width))
+  );
+  --_u-intercept: calc(
+    var(--_u-min-font-size) - var(--_u-slope) * var(--_u-min-width)
+  );
+
+  font-size: clamp(
+    var(--_u-min-font-size) / var(--_u-base-font-size) * 1rem,
+    var(--_u-slope) * var(--_u-relative-unit) + var(--_u-intercept) /
+      var(--_u-base-font-size) * 1rem,
+    var(--_u-max-font-size) / var(--_u-base-font-size) * 1rem
+  );
+}
+
+.-fluid-text--sm {
+  --fluid-text--min-font-size: 12;
+  --fluid-text--max-font-size: 14;
+}
+
+.-fluid-text--md {
+  --fluid-text--min-font-size: 18;
+  --fluid-text--max-font-size: 20;
+}
+
+.-fluid-text--lg {
+  --fluid-text--min-font-size: 20;
+  --fluid-text--max-font-size: 24;
+}
+
+.-grid {
+  --_column-gap: var(--grid-column-gap, 1.5rem);
+  --_row-gap: var(--grid-row-gap, 1rlh);
+  --_min-column-width: var(--grid-min-column-width, 20rem);
+
+  /* 包含ブロックが十分なサイズなら、最大Nつのカラムが並ぶ */
+  --_max-column-count: var(--grid-max-cloumn-count, 4);
+
+  /*
+    * 包含ブロックの幅からギャップの合計値を引く
+    * 最大カラムが4の時、`gap`は3列あるので`-1`
+    * その結果から1カラムの幅を計算する
+    * ギャップの合計値が引かれた包含ブロックの幅を、
+    * 最大カラム数で割ると1カラムの幅が求まる
+    */
+  --_calculated-column-width: calc(
+    (100% - var(--_column-gap) * (var(--_max-column-count) - 1)) /
+      var(--_max-column-count)
+  );
+  --_column-width: min(
+    100%,
+    max(var(--_calculated-column-width), var(--_min-column-width))
+  );
+
+  display: block grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--_column-width), 1fr));
+  gap: var(--_row-gap) var(--_column-gap);
+}

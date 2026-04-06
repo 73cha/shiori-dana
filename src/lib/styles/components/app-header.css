@@ -1,0 +1,36 @@
+@scope (.app-header) to (.scope) {
+  & ._layout {
+    display: block flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-block: 2rem;
+
+    & > * {
+      flex-grow: 1;
+      flex-shrink: 1;
+      min-inline-size: fit-content;
+    }
+  }
+
+  & ._logo {
+    display: block flex;
+    column-gap: 0.5em;
+    align-items: center;
+
+    & > * {
+      flex-shrink: 0;
+    }
+
+    & > h1 {
+      margin-block: unset;
+    }
+  }
+
+  & ._update-button {
+    --_font-size: calc(14 / 16 * 1em);
+
+    display: block flex;
+    justify-content: end;
+    font-size: var(--_font-size);
+  }
+}

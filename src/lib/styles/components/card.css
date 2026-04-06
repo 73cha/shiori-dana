@@ -1,0 +1,92 @@
+@layer components {
+  @scope (.card) to (.scope) {
+    /* prettier-ignore */
+    :scope {
+      --_col-gap: 1rem;
+
+      display: block grid;
+      grid-template-rows: subgrid;
+      grid-template-columns:
+        [--full-start] var(--_col-gap) [--content-start] 1fr [--content-end] var(--_col-gap) [--full-end];
+      grid-row: span 6;
+      border: solid 1px var(--color-muted);
+    }
+
+    & > * {
+      grid-column: --content;
+    }
+
+    & ._img-wrap {
+      grid-column: --full;
+    }
+
+    & ._img {
+      --_aspect-ratio: 1200 / 630;
+
+      inline-size: -webkit-fill-available;
+      inline-size: stretch;
+      aspect-ratio: var(--_aspect-ratio);
+      object-fit: cover;
+    }
+
+    & ._title {
+      align-self: center;
+    }
+
+    & ._date {
+      color: var(--color-text-muted);
+    }
+
+    /* & ._description {
+    } */
+
+    & ._tags {
+      --_font-size: calc(14 / 16 * 1em);
+
+      display: block flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      align-items: normal;
+      justify-content: normal;
+      font-size: var(--_font-size);
+    }
+
+    & ._tag {
+      display: inline grid;
+
+      & > a {
+        display: inline grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 0.25em;
+        align-items: center;
+        padding-inline: 0.75em;
+        border: solid 1px;
+        border-radius: var(--radius-pill);
+
+        &::before {
+          content: '#' / 'タグ';
+        }
+
+        @media (any-hover: hover) {
+          &:hover {
+            background-color: var(--color-muted);
+          }
+        }
+      }
+    }
+
+    & ._buttons {
+      --_font-size: calc(14 / 16 * 1em);
+
+      display: block flex;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      grid-column: --full;
+      column-gap: 0.5em;
+      justify-content: flex-end;
+      padding: 1em;
+      font-size: var(--_font-size);
+      border-block-start: solid 1px var(--color-muted);
+    }
+  }
+}

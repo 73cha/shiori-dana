@@ -1,0 +1,58 @@
+@scope (.pagenation) to (.scope) {
+  :scope {
+    display: block flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    align-items: center;
+    justify-content: center;
+    list-style-type: '';
+  }
+
+  & > li {
+    --_item-size: calc(40 / 16 * 1rem);
+
+    display: block grid;
+    flex: 0 0 var(--_item-size);
+    aspect-ratio: 1;
+
+    & > a {
+      display: block grid;
+      place-content: center;
+
+      @media (any-hover: hover) {
+        &:hover {
+          background-color: var(--color-muted);
+        }
+      }
+    }
+  }
+
+  & [aria-current='page'] {
+    pointer-events: none;
+    background-color: var(--color-primary-base);
+  }
+
+  & [data-dir] > button {
+    background-color: #fff;
+    border-color: transparent;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 1rem;
+  }
+
+  & [data-dir='first'] > button {
+    mask-image: var(--icon-chevron-first);
+  }
+
+  & [data-dir='prev'] > button {
+    mask-image: var(--icon-chevron-prev);
+  }
+
+  & [data-dir='next'] > button {
+    mask-image: var(--icon-chevron-next);
+  }
+
+  & [data-dir='last'] > button {
+    mask-image: var(--icon-chevron-last);
+  }
+}

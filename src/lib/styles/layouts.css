@@ -1,0 +1,28 @@
+#app {
+  display: block grid;
+  grid-template:
+    '--header  ' auto
+    '--contents' 1fr
+    '.         ' 3rem
+    '--footer  ' auto
+    '.         ' 3rem;
+  min-block-size: 100dvb;
+
+  & > header {
+    grid-area: --header;
+  }
+
+  & > main {
+    display: block grid;
+    grid-area: --contents;
+    grid-template:
+      '--message   ' auto
+      '--body      ' 1fr
+      '.           ' 3rem
+      '--pagenation' auto;
+  }
+
+  & > footer {
+    grid-area: --footer;
+  }
+}

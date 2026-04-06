@@ -1,0 +1,5 @@
+@scope (.app-footer) to (.scope) {
+  :scope {
+    text-align: center;
+  }
+}

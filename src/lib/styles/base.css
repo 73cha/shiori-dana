@@ -1,0 +1,8 @@
+body {
+  padding-inline: 2rem;
+  background-color: var(--color-background);
+}
+
+::highlight(search-result) {
+  color: oklch(from var(--color-primary-base) calc(l + 0.2) c h);
+}

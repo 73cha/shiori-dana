@@ -1,0 +1,53 @@
+@scope (.button) to (.scope) {
+  :scope {
+    display: inline grid;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-muted);
+      }
+    }
+  }
+
+  &[style*='--button-icon'] {
+    --_icon-size: calc(24 / 16 * 1rem);
+
+    grid-template-columns: var(--_icon-size) 1fr;
+    column-gap: 0.25rem;
+
+    &::before {
+      aspect-ratio: 1;
+      content: '';
+      background-color: currentcolor;
+      mask: var(--button-icon) no-repeat center / contain;
+    }
+  }
+
+  &[style*='--button-type'] {
+    color: #fff;
+    border-color: transparent;
+  }
+
+  &[style*='--button-type: primary'] {
+    background-color: var(--color-primary-base);
+
+    @media (any-hover: hover) {
+      &:is(:hover, :focus-visible) {
+        background-color: var(--color-primary-darken);
+      }
+    }
+  }
+
+  &[style*='--button-type: danger'] {
+    background-color: var(--color-danger-base);
+
+    @media (any-hover: hover) {
+      &:is(:hover, :focus-visible) {
+        background-color: var(--color-danger-darkest);
+      }
+    }
+  }
+}
