@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36" fill="none">
+  <style>
+    :root {
+      --icon-primary: oklch(0.47 0.25 145);
+      --icon-foreground: #FFFFFF;
+      --icon-muted: #B8B9B6;
+    }
+  </style>
+
+  <!-- Shelf 1 -->
+  <rect x="0" y="10" width="36" height="2" rx="1" fill="var(--icon-primary)"/>
+  <!-- Shelf 2 -->
+  <rect x="0" y="22" width="36" height="2" rx="1" fill="var(--icon-primary)"/>
+  <!-- Shelf 3 -->
+  <rect x="0" y="34" width="36" height="2" rx="1" fill="var(--icon-primary)"/>
+
+  <!-- Book 1 -->
+  <rect x="3" y="1" width="5" height="9" rx="1" fill="var(--icon-foreground)"/>
+  <!-- Book 2 -->
+  <rect x="10" y="3" width="5" height="7" rx="1" fill="var(--icon-muted)"/>
+  <!-- Book 3 -->
+  <rect x="17" y="2" width="4" height="8" rx="1" fill="var(--icon-primary)"/>
+
+  <!-- Book 4 -->
+  <rect x="5" y="13" width="5" height="9" rx="1" fill="var(--icon-primary)"/>
+  <!-- Book 5 -->
+  <rect x="12" y="14" width="4" height="8" rx="1" fill="var(--icon-foreground)"/>
+  <!-- Book 6 -->
+  <rect x="18" y="15" width="5" height="7" rx="1" fill="var(--icon-muted)"/>
+  <!-- Book 7 -->
+  <rect x="25" y="13" width="4" height="9" rx="1" fill="var(--icon-foreground)"/>
+
+  <!-- Book 8 -->
+  <rect x="3" y="25" width="4" height="9" rx="1" fill="var(--icon-muted)"/>
+  <!-- Book 9 -->
+  <rect x="9" y="26" width="5" height="8" rx="1" fill="var(--icon-primary)"/>
+  <!-- Book 10 -->
+  <rect x="16" y="25" width="5" height="9" rx="1" fill="var(--icon-foreground)"/>
+</svg>
