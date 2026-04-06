@@ -1,0 +1,11 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-recess-order"],
+  "ignoreFiles": ["src/lib/styles/kiso.css"],
+  "rules": {
+    "custom-property-empty-line-before": null,
+    "selector-class-pattern": "^[-_]?[a-z][a-z0-9-]*$",
+    "custom-property-pattern": null,
+    "lightness-notation": "number",
+    "hue-degree-notation": "number"
+  }
+}
