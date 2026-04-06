@@ -1,6 +1,7 @@
-design/images/
+design/
 node_modules/
 .svelte-kit/
 .vercel/
 .vscode/
+.claude/
 .env
