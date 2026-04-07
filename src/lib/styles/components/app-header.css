@@ -3,7 +3,6 @@
     display: block flex;
     flex-wrap: wrap;
     align-items: center;
-    padding-block: 2rem;
 
     & > * {
       flex-grow: 1;

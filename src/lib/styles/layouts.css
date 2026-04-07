@@ -1,7 +1,9 @@
 #app {
   display: block grid;
   grid-template:
+    '.         ' 3rem
     '--header  ' auto
+    '.         ' 2rem
     '--contents' 1fr
     '.         ' 3rem
     '--footer  ' auto
@@ -17,6 +19,7 @@
     grid-area: --contents;
     grid-template:
       '--message   ' auto
+      '.           ' 1rem
       '--body      ' 1fr
       '.           ' 3rem
       '--pagenation' auto;

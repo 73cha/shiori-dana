@@ -42,10 +42,11 @@
 
     & ._tags {
       --_font-size: calc(14 / 16 * 1em);
+      --_gap: 0.5em;
 
       display: block flex;
       flex-wrap: wrap;
-      gap: 0.5em;
+      gap: var(--_gap);
       align-items: normal;
       justify-content: normal;
       font-size: var(--_font-size);
@@ -55,11 +56,14 @@
       display: inline grid;
 
       & > a {
-        display: inline grid;
+        --_col-gap: 0.25em;
+        --_pad-inline: 0.75em;
+
+        display: block grid;
         grid-template-columns: auto 1fr;
-        column-gap: 0.25em;
+        column-gap: var(--_col-gap);
         align-items: center;
-        padding-inline: 0.75em;
+        padding-inline: var(--_pad-inline);
         border: solid 1px;
         border-radius: var(--radius-pill);
 
@@ -77,14 +81,16 @@
 
     & ._buttons {
       --_font-size: calc(14 / 16 * 1em);
+      --_col-gap: 0.5em;
+      --_padding: 1em;
 
       display: block flex;
       flex-shrink: 0;
       flex-wrap: wrap;
       grid-column: --full;
-      column-gap: 0.5em;
+      column-gap: var(--_col-gap);
       justify-content: flex-end;
-      padding: 1em;
+      padding: var(--_padding);
       font-size: var(--_font-size);
       border-block-start: solid 1px var(--color-muted);
     }

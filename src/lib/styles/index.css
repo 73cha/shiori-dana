@@ -14,4 +14,5 @@
 @import url('./components/pagenation.css') layer(components.pagenation);
 @import url('./components/button.css') layer(components.button);
 @import url('./components/card.css') layer(components.card);
+@import url('./components/edit-dialog.css') layer(components.editdialog);
 @import url('./utilities.css') layer(utilities);
