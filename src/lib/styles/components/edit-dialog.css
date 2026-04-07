@@ -1,0 +1,130 @@
+@scope (.edit-dialog) to (.scope) {
+  :scope {
+    --_min-width: min(100%, calc(640 / 16 * 1rem));
+
+    inline-size: var(--_min-width);
+    border: solid 1px var(--color-muted);
+  }
+
+  &::backdrop {
+    backdrop-filter: blur(4px);
+  }
+
+  & ._layout {
+    --_row-gap: 3em;
+    --_padding: 2em;
+
+    display: block grid;
+    row-gap: var(--_row-gap);
+    padding: var(--_padding);
+  }
+
+  & ._header {
+    display: block flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  & ._close {
+    --_font-size: calc(12 / 16 * 1rem);
+
+    border-color: transparent;
+
+    &::before {
+      --_width: calc(40 / 16 * 1rem);
+
+      display: block grid;
+      place-content: center;
+      inline-size: var(--_width);
+      aspect-ratio: 1;
+      content: '';
+      background-color: #fff;
+      mask: var(--icon-x) no-repeat center / 4em;
+    }
+  }
+
+  & ._form {
+    --_width: min(100%, calc(400 / 16 * 1em));
+
+    inline-size: var(--_width);
+    margin-inline: auto;
+
+    & fieldset + fieldset {
+      margin-block-start: 2em;
+    }
+
+    & legend {
+      --_width: 100%;
+      --_col-gap: 1em;
+      --_padding-bottom: 1em;
+
+      display: block flex;
+      column-gap: var(--_col-gap);
+      align-items: center;
+      inline-size: var(--_width);
+      padding-block-end: var(--_padding-bottom);
+
+      &::before,
+      &::after {
+        flex-grow: 1;
+        content: '';
+        border-block-start: solid 1px var(--color-muted);
+      }
+    }
+
+    & :is(input, textarea) {
+      --_width: 100%;
+      --_padding: 0.25em 0.75em;
+
+      inline-size: var(--_width);
+      padding: var(--_padding);
+      border-color: transparent;
+    }
+  }
+
+  & ._tags {
+    > li {
+      --_col-gap: 0.25em;
+
+      display: block grid;
+      grid-template-columns: 1fr auto;
+      column-gap: var(--_col-gap);
+      align-items: center;
+    }
+
+    > li + li {
+      --_margin-top: 0.5em;
+
+      margin-block-start: var(--_margin-top);
+    }
+
+    & button {
+      border-color: transparent;
+
+      &::before {
+        --_width: calc(24 / 16 * 1rem);
+
+        display: block grid;
+        place-content: center;
+        inline-size: var(--_width);
+        aspect-ratio: 1;
+        content: '';
+        background-color: #fff;
+        border-color: transparent;
+        mask: var(--icon-circle-x) no-repeat center / contain;
+      }
+    }
+  }
+
+  & ._buttons {
+    --_col-gap: 1em;
+    --_font-size: calc(14 / 16 * 1rem);
+
+    display: inline flex;
+    flex-wrap: wrap;
+    column-gap: var(--_col-gap);
+    align-items: center;
+    justify-content: center;
+    font-size: var(--_font-size);
+  }
+}
