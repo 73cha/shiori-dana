@@ -37,9 +37,6 @@
       color: var(--color-text-muted);
     }
 
-    /* & ._description {
-    } */
-
     & ._tags {
       --_font-size: calc(14 / 16 * 1em);
       --_gap: 0.5em;
@@ -52,29 +49,25 @@
       font-size: var(--_font-size);
     }
 
-    & ._tag {
-      display: inline grid;
+    ._tag-link {
+      --_col-gap: 0.25em;
+      --_pad-inline: 0.75em;
 
-      & > a {
-        --_col-gap: 0.25em;
-        --_pad-inline: 0.75em;
+      display: block grid;
+      grid-template-columns: auto 1fr;
+      column-gap: var(--_col-gap);
+      align-items: center;
+      padding-inline: var(--_pad-inline);
+      border: solid 1px;
+      border-radius: var(--radius-pill);
 
-        display: block grid;
-        grid-template-columns: auto 1fr;
-        column-gap: var(--_col-gap);
-        align-items: center;
-        padding-inline: var(--_pad-inline);
-        border: solid 1px;
-        border-radius: var(--radius-pill);
+      &::before {
+        content: '#' / 'タグ';
+      }
 
-        &::before {
-          content: '#' / 'タグ';
-        }
-
-        @media (any-hover: hover) {
-          &:hover {
-            background-color: var(--color-muted);
-          }
+      @media (any-hover: hover) {
+        &:is(:hover, :focus-visible) {
+          background-color: var(--color-muted);
         }
       }
     }

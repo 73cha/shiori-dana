@@ -26,20 +26,29 @@
   }
 
   & ._close {
-    --_font-size: calc(12 / 16 * 1rem);
+    --_width: calc(40 / 16 * 1rem);
 
+    display: inline grid;
+    place-content: center;
+    inline-size: var(--_width);
+    aspect-ratio: 1;
     border-color: transparent;
+    border-radius: var(--radius-pill);
 
     &::before {
-      --_width: calc(40 / 16 * 1rem);
+      --_width: calc(32 / 16 * 1rem);
 
-      display: block grid;
-      place-content: center;
       inline-size: var(--_width);
       aspect-ratio: 1;
       content: '';
       background-color: #fff;
       mask: var(--icon-x) no-repeat center / 4em;
+    }
+
+    @media (any-hover: hover) {
+      &:is(:hover, :focus-visible) {
+        background-color: var(--color-muted);
+      }
     }
   }
 
@@ -82,36 +91,43 @@
     }
   }
 
-  & ._tags {
-    > li {
-      --_col-gap: 0.25em;
+  ._tag {
+    --_col-gap: 0.5em;
 
-      display: block grid;
-      grid-template-columns: 1fr auto;
-      column-gap: var(--_col-gap);
-      align-items: center;
-    }
+    display: block grid;
+    grid-template-columns: 1fr auto;
+    column-gap: var(--_col-gap);
+    align-items: center;
 
-    > li + li {
+    & + ._tag {
       --_margin-top: 0.5em;
 
       margin-block-start: var(--_margin-top);
     }
 
     & button {
-      border-color: transparent;
+      --_width: calc(24 / 16 * 1em);
+
+      display: block grid;
+      place-content: center;
+      inline-size: var(--_width);
+      aspect-ratio: 1;
+      border-radius: var(--radius-pill);
 
       &::before {
-        --_width: calc(24 / 16 * 1rem);
+        --_width: calc(20 / 16 * 1em);
 
-        display: block grid;
-        place-content: center;
         inline-size: var(--_width);
         aspect-ratio: 1;
         content: '';
         background-color: #fff;
-        border-color: transparent;
-        mask: var(--icon-circle-x) no-repeat center / contain;
+        mask: var(--icon-x) no-repeat center / contain;
+      }
+
+      @media (any-hover: hover) {
+        &:is(:hover, :focus-visible) {
+          background-color: var(--color-muted);
+        }
       }
     }
   }
@@ -120,7 +136,7 @@
     --_col-gap: 1em;
     --_font-size: calc(14 / 16 * 1rem);
 
-    display: inline flex;
+    display: block flex;
     flex-wrap: wrap;
     column-gap: var(--_col-gap);
     align-items: center;
