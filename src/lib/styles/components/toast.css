@@ -1,0 +1,86 @@
+@scope (.toast[popover]) to (.scope) {
+  :scope {
+    --_padding: 1rem;
+    --_col-gap: 1rem;
+    --_width: min(100svi, calc(400 / 16 * 1rem));
+    --_top: var(--toast-position-y, 2rem);
+    --_left-raw: calc(100svi - var(--_width) - var(--_col-gap) * 2);
+    --_left: calc((sign(var(--_left-raw)) + 1) / 2 * var(--_col-gap));
+
+    inset-block-start: var(--_top);
+    inset-inline-start: var(--_left);
+    display: block grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: var(--_col-gap);
+    align-items: center;
+    inline-size: var(--_width);
+    padding: var(--_padding);
+    background-color: var(--color-black-lighter);
+    border: solid 1px var(--color-muted);
+  }
+
+  & ._icon {
+    --_width: calc(32 / 16 * 1rem);
+
+    display: block grid;
+    inline-size: var(--_width);
+    aspect-ratio: 1;
+    content: '';
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  &[data-type='loading'] {
+    & ._icon {
+      background-color: var(--color-loading-base);
+      mask-image: var(--icon-loader);
+    }
+  }
+
+  &[data-type='error'] {
+    & ._icon {
+      background-color: var(--color-danger-base);
+      mask-image: var(--icon-circle-x);
+    }
+  }
+
+  &[data-type='success'] {
+    & ._icon {
+      background-color: var(--color-primary-base);
+      mask-image: var(--icon-check);
+    }
+  }
+
+  & ._info {
+    > p {
+      font-size: calc(14 / 16 * 1rem);
+    }
+  }
+
+  & ._close {
+    display: block grid;
+    place-content: center;
+    inline-size: calc(32 / 16 * 1rem);
+    aspect-ratio: 1;
+    border-color: transparent;
+    border-radius: var(--radius-pill);
+
+    @media (any-hover: hover) {
+      &:is(:hover, :focus-visible) {
+        background-color: var(--color-muted);
+      }
+    }
+
+    &::before {
+      --_width: calc(24 / 16 * 1rem);
+
+      display: block grid;
+      inline-size: var(--_width);
+      aspect-ratio: 1;
+      content: '';
+      background-color: #fff;
+      mask: var(--icon-x) no-repeat center / 2.5rem;
+    }
+  }
+}

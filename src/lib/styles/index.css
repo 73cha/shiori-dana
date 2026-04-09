@@ -15,4 +15,5 @@
 @import url('./components/button.css') layer(components.button);
 @import url('./components/card.css') layer(components.card);
 @import url('./components/edit-dialog.css') layer(components.editdialog);
+@import url('./components/toast.css') layer(components.toast);
 @import url('./utilities.css') layer(utilities);
